@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@assets/generated_images/Hero_wedding_couple_sunset_7f3ae820.png";
+import LiquidHeroCanvas from "@/components/ui/LiquidHeroCanvas";
 
 export default function Hero() {
   const isReducedMotion = useReducedMotion();
@@ -39,11 +40,17 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[100dvh] w-full overflow-hidden mesh-hero flex"
+      className="relative min-h-[100dvh] w-full overflow-hidden flex bg-background"
       data-testid="section-hero"
     >
+      {/* Three.js Liquid Distortion WebGL Canvas */}
+      <LiquidHeroCanvas />
+
+      {/* Translucent overlay to blend the canvas nicely with the theme background */}
+      <div className="absolute inset-0 bg-background/25 dark:bg-background/40 z-[1] pointer-events-none" />
+
       {/* Hairline horizontal rule mid-section */}
-      <div className="absolute left-0 right-0 top-1/2 h-[1px] bg-foreground/[0.03] z-0 pointer-events-none" />
+      <div className="absolute left-0 right-0 top-1/2 h-[1px] bg-foreground/[0.03] z-[2] pointer-events-none" />
 
       {/* Main content wrapper */}
       <motion.div
@@ -62,7 +69,7 @@ export default function Hero() {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             className="mb-6 md:mb-8"
           >
-            <span className="text-[9px] uppercase tracking-[0.38em] font-semibold text-foreground/30">
+            <span className="text-[9px] uppercase tracking-[0.38em] font-semibold text-foreground/45">
               Premium Photography · Bali, Indonesia
             </span>
           </motion.div>
@@ -143,7 +150,7 @@ export default function Hero() {
           {/* Vertically rotated tagline */}
           <div className="flex items-start">
             <p
-              className="font-serif text-[11px] italic font-light text-foreground/40 leading-loose"
+              className="font-serif text-[11px] italic font-light text-foreground/45 leading-loose"
               style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
               data-testid="text-tagline"
             >
@@ -154,7 +161,7 @@ export default function Hero() {
           {/* Location info + CTA */}
           <div className="flex flex-col gap-8">
             <div>
-              <p className="text-[8px] uppercase tracking-[0.35em] text-foreground/20 mb-1.5 font-semibold">
+              <p className="text-[8px] uppercase tracking-[0.35em] text-foreground/25 mb-1.5 font-semibold">
                 Based in
               </p>
               <p className="text-xs text-foreground/50 font-light">Gianyar, Bali</p>
