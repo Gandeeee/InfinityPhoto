@@ -1,121 +1,129 @@
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, Instagram, Facebook } from "lucide-react";
+import ConceptBuilder from "@/components/ConceptBuilder";
 
 export default function Contact() {
-  // Fungsi ini akan menangani klik untuk kedua tombol
-  const handleWhatsAppClick = (admin: 'admin1' | 'admin2') => {
-
-    let waNumber = "";
-
-    if (admin === 'admin1') {
-      // --- NOMOR ADMIN 1 ---
-      waNumber = "6282146802311"; // Ganti dengan nomor WA Admin 1
-    } else {
-      // ---  NOMOR ADMIN 2 ---
-      waNumber = "6281805610551"; // Ganti dengan nomor WA Admin 2
-    }
-
-    const waMessage = encodeURIComponent("Halo Infinity Photo, saya tertarik dengan layanan fotografi Anda.");
-    window.open(`https://wa.me/${waNumber}?text=${waMessage}`, "_blank");
-  };
-
   return (
-    <section id="contact" className="py-24 px-8 bg-background" data-testid="section-contact">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl font-light mb-6 text-foreground" data-testid="heading-contact">
+    <section 
+      id="contact" 
+      className="py-36 md:py-48 px-6 mesh-contact overflow-hidden relative" 
+      data-testid="section-contact"
+    >
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Header Block */}
+        <div className="text-center mb-20">
+          <span className="text-[9px] uppercase tracking-[0.35em] font-semibold text-primary mb-4 block">
+            Connect
+          </span>
+          <h2 
+            className="font-serif text-5xl md:text-6xl font-light mb-6 text-foreground tracking-tight leading-[0.9]" 
+            data-testid="heading-contact"
+          >
             Get In Touch
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm md:text-base max-w-xl mx-auto leading-relaxed font-light">
             Ready to capture your special moments? Contact us to discuss your photography needs
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        {/* Two Column Layout */}
+        <div className="grid md:grid-cols-12 gap-12 lg:gap-16 items-start">
 
-          {/* Semua kode <Form> diganti dengan blok di bawah ini */}
-          <div className="flex flex-col items-center justify-center p-8 bg-accent rounded-md text-center h-full">
-            <h3 className="font-serif text-3xl font-light mb-6 text-foreground">
-              Let's Discuss Your Project
-            </h3>
-            <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-              Klik tombol di bawah untuk mengobrol langsung dengan salah satu admin kami via WhatsApp untuk respon cepat.
-            </p>
+          {/* Left Column - Concept Builder Interactive Quote estimating calculator (md:col-span-7) */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
+            className="md:col-span-7 w-full flex"
+          >
+            <ConceptBuilder />
+          </motion.div>
 
-            {/* Wrapper untuk dua tombol */}
-            <div className="flex flex-col sm:flex-row gap-4 w-full max-w-sm">
-              <Button
-                size="lg"
-                className="w-full"
-                onClick={() => handleWhatsAppClick('admin1')}
-                data-testid="button-whatsapp-1"
-              >
-                <Phone className="mr-2 h-5 w-5" />
-                Chat Admin 1
-              </Button>
-              <Button
-                size="lg"
-                variant="secondary" // Tombol kedua dibuat beda
-                className="w-full"
-                onClick={() => handleWhatsAppClick('admin2')}
-                data-testid="button-whatsapp-2"
-              >
-                <Phone className="mr-2 h-5 w-5" />
-                Chat Admin 2
-              </Button>
-            </div>
-          </div>
-          {/* === AKHIR BLOK YANG DIUBAH === */}
-
-
-          {/* BLOK INFO KONTAK (TETAP SAMA) */}
-          <div className="space-y-8">
+          {/* Right Column - Direct Contact Information (md:col-span-5) */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: 0.15 }}
+            className="md:col-span-5 space-y-10 flex flex-col justify-between"
+          >
+            {/* Direct Contact info */}
             <div>
-              <h3 className="font-serif text-2xl font-light mb-6 text-foreground">Contact Information</h3>
-              <div className="space-y-4">
+              <h3 className="font-serif text-2xl font-light mb-6 text-foreground tracking-wide">Contact Information</h3>
+              <div className="space-y-6">
                 <div className="flex items-start gap-4" data-testid="info-email">
-                  <Mail className="w-5 h-5 text-primary mt-1" />
+                  <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-4 h-4 text-primary" />
+                  </div>
                   <div>
-                    <p className="font-medium text-foreground">Email</p>
-                    <p className="text-muted-foreground">infinityphotocontact@gmail.com</p>
+                    <p className="text-[10px] uppercase tracking-wider font-semibold text-foreground/80 mb-0.5">Email</p>
+                    <p className="text-sm text-muted-foreground font-light">infinityphotocontact@gmail.com</p>
                   </div>
                 </div>
+                
                 <div className="flex items-start gap-4" data-testid="info-phone">
-                  <Phone className="w-5 h-5 text-primary mt-1" />
+                  <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-4 h-4 text-primary" />
+                  </div>
                   <div>
-                    <p className="font-medium text-foreground">Phone</p>
-                    <p className="text-muted-foreground">+6281 8056 10551</p>
+                    <p className="text-[10px] uppercase tracking-wider font-semibold text-foreground/80 mb-0.5">Phone</p>
+                    <p className="text-sm text-muted-foreground font-light">+6281 8056 10551</p>
                   </div>
                 </div>
+                
                 <div className="flex items-start gap-4" data-testid="info-location">
-                  <MapPin className="w-5 h-5 text-primary mt-1" />
+                  <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-4 h-4 text-primary" />
+                  </div>
                   <div>
-                    <p className="font-medium text-foreground">Location</p>
-                    <p className="text-muted-foreground">Gianyar, Bali, Indonesia</p>
+                    <p className="text-[10px] uppercase tracking-wider font-semibold text-foreground/80 mb-0.5">Location</p>
+                    <p className="text-sm text-muted-foreground font-light">Gianyar, Bali, Indonesia</p>
                   </div>
                 </div>
               </div>
             </div>
 
+            {/* Socials */}
             <div>
-              <h3 className="font-serif text-2xl font-light mb-6 text-foreground">Follow Us</h3>
+              <h3 className="font-serif text-2xl font-light mb-4 text-foreground tracking-wide">Follow Us</h3>
               <div className="flex gap-4">
-                <Button variant="outline" size="icon" data-testid="link-instagram">
-                  <Instagram className="w-5 h-5" />
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  className="rounded-full bg-background/30 hover:bg-primary border border-foreground/[0.08] hover:text-primary-foreground hover:border-primary transition-all duration-500 w-10 h-10" 
+                  data-testid="link-instagram"
+                  asChild
+                >
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                    <Instagram className="w-4 h-4" />
+                  </a>
                 </Button>
-                <Button variant="outline" size="icon" data-testid="link-facebook">
-                  <Facebook className="w-5 h-5" />
+                <Button 
+                  variant="outline" 
+                  size="icon" 
+                  className="rounded-full bg-background/30 hover:bg-primary border border-foreground/[0.08] hover:text-primary-foreground hover:border-primary transition-all duration-500 w-10 h-10" 
+                  data-testid="link-facebook"
+                  asChild
+                >
+                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                    <Facebook className="w-4 h-4" />
+                  </a>
                 </Button>
               </div>
             </div>
 
-            <div className="p-8 bg-accent rounded-md">
-              <h4 className="font-serif text-lg mb-3 text-foreground">Business Hours</h4>
-              <p className="text-sm text-muted-foreground">Monday - Friday: 9:00 AM - 6:00 PM</p>
-              <p className="text-sm text-muted-foreground">Saturday: 10:00 AM - 4:00 PM</p>
-              <p className="text-sm text-muted-foreground">Sunday: By Appointment</p>
+            {/* Business Hours glass card */}
+            <div className="glass rounded-[2rem] p-7 md:p-8">
+              <h4 className="font-serif text-lg font-light mb-3 text-foreground tracking-wide">Business Hours</h4>
+              <div className="space-y-1.5 text-xs text-muted-foreground font-light">
+                <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                <p>Saturday: 10:00 AM - 4:00 PM</p>
+                <p>Sunday: By Appointment</p>
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

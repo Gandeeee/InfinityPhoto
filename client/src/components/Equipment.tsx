@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 const equipmentCategories = [
   {
     title: "Camera Bodies",
@@ -28,35 +30,64 @@ const equipmentCategories = [
 
 export default function Equipment() {
   return (
-    <section className="py-24 px-8 bg-background" data-testid="section-equipment">
+    <section 
+      className="py-28 md:py-36 px-6 bg-background overflow-hidden" 
+      data-testid="section-equipment"
+    >
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl font-light mb-6 text-foreground" data-testid="heading-equipment">
+        {/* Section Header */}
+        <div className="text-center mb-20">
+          <span className="text-[10px] uppercase tracking-[0.25em] font-semibold text-primary mb-4 block">
+            Tools of Craft
+          </span>
+          <h2 
+            className="font-serif text-4xl md:text-5xl font-light mb-6 text-foreground tracking-wide" 
+            data-testid="heading-equipment"
+          >
             Professional Equipment
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-sm md:text-base max-w-xl mx-auto leading-relaxed">
             Industry-leading gear to ensure the highest quality results for every project
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        {/* Spec Sheet Grid */}
+        <div className="grid md:grid-cols-2 gap-8 items-start">
           {equipmentCategories.map((category, catIndex) => (
-            <div key={category.title} data-testid={`category-${catIndex}`}>
-              <h3 className="font-serif text-2xl font-light mb-4 text-foreground" data-testid={`heading-category-${catIndex}`}>
-                {category.title}
-              </h3>
-              <ul className="space-y-2">
-                {category.items.map((item, itemIndex) => (
-                  <li
-                    key={item}
-                    className="text-muted-foreground pl-4 border-l-2 border-primary/20"
-                    data-testid={`item-${catIndex}-${itemIndex}`}
+            <motion.div
+              key={category.title}
+              data-testid={`category-${catIndex}`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: catIndex * 0.1 }}
+              className="flex"
+            >
+              <div className="double-bezel w-full flex shadow-[0_8px_30px_rgba(0,0,0,0.02)]">
+                <div className="double-bezel-inner p-8 w-full">
+                  {/* Category Title */}
+                  <h3 
+                    className="font-serif text-2xl font-light mb-6 text-foreground tracking-wide border-b border-black/5 dark:border-white/5 pb-4" 
+                    data-testid={`heading-category-${catIndex}`}
                   >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+                    {category.title}
+                  </h3>
+                  
+                  {/* Item List */}
+                  <ul className="space-y-4">
+                    {category.items.map((item, itemIndex) => (
+                      <li
+                        key={item}
+                        className="text-xs md:text-sm text-muted-foreground pl-4 border-l-2 border-primary/45 tracking-wide hover:text-foreground transition-colors duration-300"
+                        data-testid={`item-${catIndex}-${itemIndex}`}
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
