@@ -7,8 +7,9 @@ import Home from "@/pages/Home";
 import NotFound from "@/pages/not-found";
 
 // 2. Kita tentukan base path kita (harus sama dengan di vite.config.ts)
-// Ambil dari GITHUB_PAGES_REPO_NAME di vite.config.ts
-const appBase = "/InfinityPhoto-main";
+const appBase = typeof window !== "undefined" && window.location.pathname.startsWith("/InfinityPhoto-main")
+  ? "/InfinityPhoto-main"
+  : "";
 
 function App() {
   return (
