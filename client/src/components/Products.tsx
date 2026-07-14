@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import albumImage from "@assets/generated_images/Luxury_photo_album_product_47215657.png";
 import frameImage from "@assets/generated_images/Wooden_frame_product_mockup_bdcb6ceb.png";
 import customUsb from "@assets/generated_images/custom_drives.jpg";
-import digitalGallery from "@assets/generated_images/digital_gallery.jpg";
+import digitalGallery from "@assets/generated_images/Digital_gallery.jpg";
 
 const products = [
   {
