@@ -65,7 +65,7 @@ export default function Services() {
       <div className="max-w-7xl mx-auto">
         {/* Header Block */}
         <div className="text-center mb-20">
-          <span className="text-[9px] uppercase tracking-[0.35em] font-semibold text-primary mb-4 block">
+          <span className="text-[11px] uppercase tracking-[0.15em] font-semibold text-primary mb-4 block">
             Capabilities
           </span>
           <h2 
@@ -79,7 +79,7 @@ export default function Services() {
           <div className="inline-flex p-1.5 rounded-full border border-foreground/[0.06] bg-foreground/[0.02] backdrop-blur-md">
             <button
               onClick={() => setActiveTab("services")}
-              className={`text-[9px] uppercase tracking-[0.2em] font-semibold px-6 py-2.5 rounded-full transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+              className={`text-[11px] uppercase tracking-[0.1em] font-semibold px-6 py-2.5 rounded-full transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
                 activeTab === "services"
                   ? "bg-primary text-primary-foreground shadow-sm"
                   : "text-foreground/60 hover:text-foreground"
@@ -89,7 +89,7 @@ export default function Services() {
             </button>
             <button
               onClick={() => setActiveTab("products")}
-              className={`text-[9px] uppercase tracking-[0.2em] font-semibold px-6 py-2.5 rounded-full transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+              className={`text-[11px] uppercase tracking-[0.1em] font-semibold px-6 py-2.5 rounded-full transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
                 activeTab === "products"
                   ? "bg-primary text-primary-foreground shadow-sm"
                   : "text-foreground/60 hover:text-foreground"
@@ -128,7 +128,7 @@ export default function Services() {
                     <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/40 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-500" />
                     
                     <div className="absolute bottom-0 left-0 right-0 p-8 text-foreground z-10 flex flex-col justify-end h-full">
-                      <span className="text-[9px] uppercase tracking-[0.2em] text-primary mb-2.5 font-semibold font-sans">
+                      <span className="text-[11px] uppercase tracking-[0.1em] text-primary mb-2.5 font-semibold font-sans">
                         Session 0{index + 1}
                       </span>
                       <h3 

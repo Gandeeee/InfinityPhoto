@@ -69,7 +69,7 @@ export default function Hero() {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             className="mb-6 md:mb-8"
           >
-            <span className="text-[9px] uppercase tracking-[0.38em] font-semibold text-foreground/45">
+            <span className="text-[11px] uppercase tracking-[0.15em] font-semibold text-foreground/45">
               Premium Photography · Bali, Indonesia
             </span>
           </motion.div>
@@ -129,7 +129,7 @@ export default function Hero() {
                 onClick={() => scrollToSection("contact")}
                 data-testid="button-cta-hero"
               >
-                <span className="text-[10px] uppercase tracking-[0.22em] font-medium mr-3">
+                <span className="text-[11px] uppercase tracking-[0.1em] font-medium mr-3">
                   Get In Touch
                 </span>
                 <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:scale-110">
@@ -154,14 +154,14 @@ export default function Hero() {
               style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
               data-testid="text-tagline"
             >
-              Capturing timeless moments with artistic excellence
+              Wedding & editorial photography across Bali
             </p>
           </div>
 
           {/* Location info + CTA */}
           <div className="flex flex-col gap-8">
             <div>
-              <p className="text-[8px] uppercase tracking-[0.35em] text-foreground/25 mb-1.5 font-semibold">
+              <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/25 mb-1.5 font-semibold">
                 Based in
               </p>
               <p className="text-xs text-foreground/50 font-light">Gianyar, Bali</p>
@@ -174,7 +174,7 @@ export default function Hero() {
                 onClick={() => scrollToSection("contact")}
                 data-testid="button-cta-hero-desktop"
               >
-                <span className="text-[9px] uppercase tracking-[0.2em] font-medium flex-1 text-left">
+                <span className="text-[11px] uppercase tracking-[0.1em] font-medium flex-1 text-left">
                   Get In Touch
                 </span>
                 <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:scale-110">

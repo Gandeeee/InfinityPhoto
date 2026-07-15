@@ -30,12 +30,12 @@ export default function ConceptBuilder() {
   const [deliverable, setDeliverable] = useState<DeliverableType>("digital");
 
   const handleSendInquiry = () => {
-    const textMessage = `Halo Infinity Photo, saya merencanakan sesi foto dengan rincian berikut:
-- Tipe: ${sessionOptions[session]}
-- Durasi: ${durationOptions[duration]}
-- Paket: ${deliverableOptions[deliverable]}
+    const textMessage = `Hello Infinity Photo, I am planning a photo session with the following details:
+- Type: ${sessionOptions[session]}
+- Duration: ${durationOptions[duration]}
+- Deliverable: ${deliverableOptions[deliverable]}
 
-Apakah ada slot jadwal yang tersedia untuk konsep ini? Terima kasih.`;
+Are there available schedules for this concept? Thank you.`;
 
     const encoded = encodeURIComponent(textMessage);
     window.open(`https://wa.me/6282146802311?text=${encoded}`, "_blank");
@@ -53,7 +53,7 @@ Apakah ada slot jadwal yang tersedia untuk konsep ini? Terima kasih.`;
 
         {/* 1. SESSION SELECTION */}
         <div className="mb-6">
-          <span className="text-[10px] uppercase tracking-wider font-semibold text-foreground/80 mb-2 block">
+          <span className="text-[11px] uppercase tracking-wider font-semibold text-foreground/80 mb-2 block">
             1. Select Session Type
           </span>
           <div className="grid grid-cols-3 gap-2">
@@ -61,7 +61,7 @@ Apakah ada slot jadwal yang tersedia untuk konsep ini? Terima kasih.`;
               <button
                 key={key}
                 onClick={() => setSession(key)}
-                className={`text-[9px] sm:text-[10px] uppercase tracking-wider py-3 px-2 rounded-xl border transition-all duration-300 font-semibold ${
+                className={`text-[11px] uppercase tracking-wider py-3 px-2 rounded-xl border transition-all duration-300 font-semibold ${
                   session === key
                     ? "bg-primary/10 border-primary text-primary"
                     : "bg-background/20 border-foreground/[0.06] text-muted-foreground hover:bg-background/40 hover:text-foreground"
@@ -75,7 +75,7 @@ Apakah ada slot jadwal yang tersedia untuk konsep ini? Terima kasih.`;
 
         {/* 2. DURATION SELECTION */}
         <div className="mb-6">
-          <span className="text-[10px] uppercase tracking-wider font-semibold text-foreground/80 mb-2 block">
+          <span className="text-[11px] uppercase tracking-wider font-semibold text-foreground/80 mb-2 block">
             2. Coverage Duration
           </span>
           <div className="grid grid-cols-3 gap-2">
@@ -83,7 +83,7 @@ Apakah ada slot jadwal yang tersedia untuk konsep ini? Terima kasih.`;
               <button
                 key={key}
                 onClick={() => setDuration(key)}
-                className={`text-[9px] sm:text-[10px] uppercase tracking-wider py-3 px-2 rounded-xl border transition-all duration-300 font-semibold ${
+                className={`text-[11px] uppercase tracking-wider py-3 px-2 rounded-xl border transition-all duration-300 font-semibold ${
                   duration === key
                     ? "bg-primary/10 border-primary text-primary"
                     : "bg-background/20 border-foreground/[0.06] text-muted-foreground hover:bg-background/40 hover:text-foreground"
@@ -97,7 +97,7 @@ Apakah ada slot jadwal yang tersedia untuk konsep ini? Terima kasih.`;
 
         {/* 3. DELIVERABLES SELECTION */}
         <div className="mb-8">
-          <span className="text-[10px] uppercase tracking-wider font-semibold text-foreground/80 mb-2 block">
+          <span className="text-[11px] uppercase tracking-wider font-semibold text-foreground/80 mb-2 block">
             3. Deliverables Package
           </span>
           <div className="flex flex-col gap-2">
@@ -126,7 +126,7 @@ Apakah ada slot jadwal yang tersedia untuk konsep ini? Terima kasih.`;
             className="w-full rounded-full pl-6 pr-2 py-5 bg-primary text-primary-foreground hover:bg-primary/95 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] flex justify-between items-center"
             onClick={handleSendInquiry}
           >
-            <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-left">Send Concept to WhatsApp</span>
+            <span className="text-[11px] uppercase tracking-[0.1em] font-semibold text-left">Send Concept to WhatsApp</span>
             <div className="w-7 h-7 rounded-full bg-primary-foreground/15 flex items-center justify-center transition-all duration-500 group-hover:scale-105">
               <Phone className="h-3.5 w-3.5 text-primary-foreground" />
             </div>

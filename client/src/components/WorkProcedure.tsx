@@ -3,32 +3,32 @@ import { motion } from "framer-motion";
 const procedureSteps = [
   {
     num: "01",
-    title: "Konsultasi Awal",
-    description: "Mendengarkan kebutuhan klien secara detail untuk memahami visi dan momen yang ingin diabadikan.",
+    title: "Initial Consultation",
+    description: "We listen closely to understand your vision, the moments that matter, and the story you want told.",
     accent: "C",
   },
   {
     num: "02",
-    title: "Perencanaan & Jadwal",
-    description: "Menyusun timeline, konsep visual, dan mempersiapkan semua kebutuhan teknis maupun artistik.",
+    title: "Planning & Scheduling",
+    description: "We map out the timeline, define the visual direction, and prepare every technical detail in advance.",
     accent: "P",
   },
   {
     num: "03",
-    title: "Sesi Pemotretan",
-    description: "Menangkap momen terbaik Anda dengan profesionalisme penuh dan arahan artistik yang presisi.",
+    title: "The Photo Session",
+    description: "On the day, we guide you through natural poses and capture genuine moments with precision.",
     accent: "S",
   },
   {
     num: "04",
-    title: "Proses Editing",
-    description: "Memproses dan menyempurnakan setiap frame dengan grading warna sinematik berkualitas tertinggi.",
+    title: "Post-Production",
+    description: "Each frame is hand-edited with cinematic color grading to match the mood of the day.",
     accent: "E",
   },
   {
     num: "05",
-    title: "Pengiriman & Feedback",
-    description: "Menyampaikan hasil akhir melalui galeri digital privat dan menampung revisi hingga puas.",
+    title: "Delivery & Review",
+    description: "Final images delivered through a private online gallery, with revisions until you are completely satisfied.",
     accent: "D",
   },
 ];
@@ -66,18 +66,18 @@ export default function WorkProcedure() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="text-[9px] uppercase tracking-[0.35em] font-semibold text-primary mb-5 block">
+          <span className="text-[11px] uppercase tracking-[0.15em] font-semibold text-primary mb-5 block">
             Quality Process
           </span>
           <h2
-            className="font-serif text-5xl md:text-6xl lg:text-7xl font-extralight text-foreground tracking-tight leading-[0.9] mb-6"
+            className="font-serif text-5xl md:text-6xl lg:text-7xl font-light text-foreground tracking-tight leading-[0.9] mb-6"
             data-testid="heading-work-procedure"
           >
             How we<br />
             <span className="italic text-foreground/35">work</span>
           </h2>
           <p className="text-sm text-muted-foreground font-light leading-relaxed max-w-md">
-            Dari ide pertama hingga hasil akhir di tangan Anda — setiap langkah dirancang untuk menghasilkan karya terbaik.
+            From your first idea to the finished prints in your hands — every step is designed around your story.
           </p>
         </motion.div>
 
@@ -176,7 +176,7 @@ export default function WorkProcedure() {
                     >
                       {g.value}
                     </span>
-                    <span className="text-[9px] uppercase tracking-[0.2em] text-muted-foreground/60 font-medium">
+                    <span className="text-[11px] uppercase tracking-[0.1em] text-muted-foreground/60 font-medium">
                       {g.label}
                     </span>
                   </motion.div>
@@ -193,10 +193,10 @@ export default function WorkProcedure() {
               className="border-l-[2px] border-primary/30 pl-6"
             >
               <p className="font-serif text-lg md:text-xl font-light italic text-foreground/50 leading-relaxed">
-                "Every frame we deliver is one we'd proudly hang in our own home."
+                "They made us feel completely at ease. The photos captured exactly what we felt that day."
               </p>
-              <footer className="mt-4 text-[10px] uppercase tracking-[0.25em] text-muted-foreground/40 font-semibold">
-                — Infinity Photo Studio
+              <footer className="mt-4 text-[11px] uppercase tracking-[0.12em] text-muted-foreground/40 font-semibold">
+                — Ari & Maya, Ubud Wedding 2024
               </footer>
             </motion.blockquote>
           </motion.div>

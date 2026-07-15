@@ -50,27 +50,27 @@ export default function About() {
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div>
-              <span className="text-[9px] uppercase tracking-[0.35em] font-semibold text-primary mb-6 block">
+              <span className="text-[11px] uppercase tracking-[0.15em] font-semibold text-primary mb-6 block">
                 The Studio
               </span>
               <h2 
-                className="font-serif text-5xl md:text-6xl lg:text-7xl font-extralight mb-8 text-foreground tracking-[-0.02em] leading-[0.88]" 
+                className="font-serif text-5xl md:text-6xl lg:text-7xl font-light mb-8 text-foreground tracking-[-0.02em] leading-[0.88]" 
                 data-testid="heading-about"
               >
                 About<br />
                 <span className="italic text-foreground/35">Us</span>
               </h2>
               <p className="text-sm md:text-base text-foreground/80 mb-4 leading-relaxed font-light">
-                Infinity Photo is a professional photography brand based in the beautiful island of Bali, dedicated to creating premium visual experiences with emotional depth and personal connection.
+                Infinity Photo is a professional photography brand based in the beautiful island of Bali, dedicated to photography that feels like you — natural, warm, and true to the moment.
               </p>
               <p className="text-xs md:text-sm text-muted-foreground mb-6 leading-relaxed font-light">
-                Founded by a team experienced in the world of photography and the creative industry, Infinity Photo has served various clients in Bali with a personal approach and top-class visual quality. We believe that every photo is not just an image, but a visual heritage that will be remembered forever.
+                Founded by a team experienced in the world of photography and the creative industry, Infinity Photo has served various clients in Bali with a personal approach and top-class visual quality. We believe that every photo is not just an image, but photographs worth keeping for generations.
               </p>
 
               {/* Collapsible Gear spec drawer */}
               <Sheet>
                 <SheetTrigger asChild>
-                  <button className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary hover:text-primary/80 transition-colors flex items-center gap-1.5 cursor-pointer bg-transparent border-none">
+                  <button className="text-[11px] uppercase tracking-[0.1em] font-bold text-primary hover:text-primary/80 transition-colors flex items-center gap-1.5 cursor-pointer bg-transparent border-none">
                     View Professional Gear Specs <span className="text-sm font-sans font-light">↗</span>
                   </button>
                 </SheetTrigger>
@@ -144,7 +144,7 @@ export default function About() {
                   Vision
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed font-light">
-                  To become the leading photography brand in Bali, recognized for our artistic excellence, emotional storytelling, and commitment to preserving life's most precious moments.
+                  To become the leading photography brand in Bali, recognized for careful, considered craft, honest documentation, and commitment to preserving life's most precious moments.
                 </p>
               </div>
 
@@ -154,7 +154,7 @@ export default function About() {
                   Mission
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed font-light">
-                  Deliver exceptional visual quality, personalize stories, innovate with modern techniques, and create elegant final products that become cherished heirlooms.
+                  Deliver exceptional visual quality, personalize stories, innovate with modern techniques, and create elegant final products that become printed keepsakes.
                 </p>
               </div>
             </div>
@@ -163,7 +163,7 @@ export default function About() {
               className="border-l-[3px] border-primary pl-6 font-serif text-xl md:text-2xl font-light italic text-foreground/80 py-1 leading-relaxed max-w-lg mx-auto lg:mx-0 lg:max-w-none mt-2" 
               data-testid="text-quote"
             >
-              "Capturing Timeless Moments"
+              "Real, honest photographs"
             </blockquote>
           </motion.div>
         </div>

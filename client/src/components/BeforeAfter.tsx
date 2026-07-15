@@ -27,7 +27,7 @@ export default function BeforeAfter() {
 
   return (
     <div className="flex flex-col gap-4 w-full">
-      <span className="text-[9px] uppercase tracking-[0.25em] font-semibold text-primary block text-center">
+      <span className="text-[11px] uppercase tracking-[0.12em] font-semibold text-primary block text-center">
         Drag to compare: RAW vs Finished Edit
       </span>
       <div 
@@ -44,7 +44,7 @@ export default function BeforeAfter() {
             alt="RAW Camera Capture" 
             className="w-full h-full object-cover saturate-[0.25] contrast-[0.8] brightness-[0.85]"
           />
-          <div className="absolute top-4 left-4 glass px-3 py-1 rounded-full text-[9px] text-foreground uppercase tracking-widest font-medium">
+          <div className="absolute top-4 left-4 glass px-3 py-1 rounded-full text-[11px] text-foreground uppercase tracking-widest font-medium">
             RAW Capture
           </div>
         </div>
@@ -59,7 +59,7 @@ export default function BeforeAfter() {
             alt="Final Color Grade" 
             className="w-full h-full object-cover"
           />
-          <div className="absolute top-4 right-4 bg-primary px-3 py-1 rounded-full text-[9px] text-primary-foreground uppercase tracking-widest font-semibold">
+          <div className="absolute top-4 right-4 bg-primary px-3 py-1 rounded-full text-[11px] text-primary-foreground uppercase tracking-widest font-semibold">
             Final Edit
           </div>
         </div>

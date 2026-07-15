@@ -31,7 +31,7 @@ export default function Footer() {
           <div>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="font-serif text-2xl font-extralight tracking-[0.2em] text-foreground mb-4 block hover:text-primary transition-colors duration-300 bg-transparent border-none cursor-pointer"
+              className="font-serif text-2xl font-extralight tracking-[0.1em] text-foreground mb-4 block hover:text-primary transition-colors duration-300 bg-transparent border-none cursor-pointer"
               aria-label="Back to top"
             >
               INFINITY PHOTO
@@ -43,7 +43,7 @@ export default function Footer() {
 
           {/* Navigation Links */}
           <div>
-            <span className="text-[9px] uppercase tracking-[0.25em] font-semibold text-muted-foreground/60 block mb-4">
+            <span className="text-[11px] uppercase tracking-[0.12em] font-semibold text-muted-foreground/60 block mb-4">
               Navigate
             </span>
             <ul className="space-y-2">
@@ -63,12 +63,12 @@ export default function Footer() {
           {/* Socials + back to top */}
           <div className="flex flex-col items-start md:items-end gap-6">
             <div>
-              <span className="text-[9px] uppercase tracking-[0.25em] font-semibold text-muted-foreground/60 block mb-4 md:text-right">
+              <span className="text-[11px] uppercase tracking-[0.12em] font-semibold text-muted-foreground/60 block mb-4 md:text-right">
                 Follow Us
               </span>
               <div className="flex gap-3">
                 <a
-                  href="https://instagram.com"
+                  href="https://instagram.com/infinityphotobali"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
@@ -77,7 +77,7 @@ export default function Footer() {
                   <Instagram className="w-3.5 h-3.5" />
                 </a>
                 <a
-                  href="https://facebook.com"
+                  href="https://facebook.com/infinityphotobali"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
@@ -91,7 +91,7 @@ export default function Footer() {
             {/* Back to top */}
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-semibold text-muted-foreground/60 hover:text-primary transition-colors duration-300 group bg-transparent border-none cursor-pointer p-0"
+              className="flex items-center gap-2 text-[10px] uppercase tracking-[0.1em] font-semibold text-muted-foreground/60 hover:text-primary transition-colors duration-300 group bg-transparent border-none cursor-pointer p-0"
               aria-label="Back to top"
             >
               <span>Back to top</span>
@@ -111,10 +111,10 @@ export default function Footer() {
             © {new Date().getFullYear()} Infinity Photo. All rights reserved. Gianyar, Bali, Indonesia.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground/50 hover:text-foreground transition-colors duration-300 font-light">
+            <a href="/privacy" className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground/50 hover:text-foreground transition-colors duration-300 font-light">
               Privacy Policy
             </a>
-            <a href="#" className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground/50 hover:text-foreground transition-colors duration-300 font-light">
+            <a href="/terms" className="text-[10px] uppercase tracking-[0.15em] text-muted-foreground/50 hover:text-foreground transition-colors duration-300 font-light">
               Terms of Service
             </a>
           </div>

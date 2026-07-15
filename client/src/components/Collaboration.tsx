@@ -197,7 +197,7 @@ export default function Collaboration() {
       <div className="max-w-5xl mx-auto text-center relative z-10 px-6">
         {/* Header Block */}
         <div className="mb-20">
-          <span className="text-[9px] uppercase tracking-[0.35em] font-semibold text-primary mb-4 block">
+          <span className="text-[11px] uppercase tracking-[0.15em] font-semibold text-primary mb-4 block">
             Opportunities
           </span>
           <h2 
@@ -269,7 +269,7 @@ export default function Collaboration() {
                 className="rounded-full pl-6 pr-2 py-5 bg-primary text-primary-foreground hover:bg-primary/95 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
                 data-testid="button-collaboration-contact"
               >
-                <span className="text-xs uppercase tracking-[0.2em] font-medium mr-3">Get In Touch</span>
+                <span className="text-xs uppercase tracking-[0.1em] font-medium mr-3">Get In Touch</span>
                 <div className="w-7 h-7 rounded-full bg-primary-foreground/15 flex items-center justify-center transition-all duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                   <ArrowUpRight className="w-3.5 h-3.5 text-primary-foreground" />
                 </div>
@@ -284,7 +284,7 @@ export default function Collaboration() {
           data-testid="section-clients"
         >
           <span 
-            className="text-[9px] uppercase tracking-[0.25em] font-semibold text-muted-foreground/60 block text-center mb-10 select-none"
+            className="text-[11px] uppercase tracking-[0.12em] font-semibold text-muted-foreground/60 block text-center mb-10 select-none"
             data-testid="heading-clients"
           >
             Valued Partners & Clients
@@ -421,25 +421,25 @@ export default function Collaboration() {
 
               {/* Client brand info */}
               <div className="space-y-3">
-                <span className="text-[10px] font-mono text-primary uppercase tracking-[0.25em] font-semibold block">
+                <span className="text-[11px] font-mono text-primary uppercase tracking-[0.12em] font-semibold block">
                   {marqueeLogos[selectedClientIndex].category}
                 </span>
                 <h3 className="font-serif text-3xl font-light text-foreground tracking-tight leading-tight">
                   {marqueeLogos[selectedClientIndex].name}
                 </h3>
                 <p className="text-xs text-muted-foreground font-light leading-relaxed max-w-sm">
-                  Partner resmi kolaborasi Infinity Photo dalam menghasilkan produksi visual tingkat dunia, mendokumentasikan keindahan Bali dan sekitarnya.
+                  Official Infinity Photo partner for world-class visual production, documenting the beauty of Bali and beyond.
                 </p>
               </div>
 
               {/* Project Details metadata badges */}
               <div className="w-full border-t border-foreground/[0.06] pt-6 flex justify-around text-left">
                 <div>
-                  <span className="text-[8px] font-mono text-muted-foreground/50 uppercase tracking-widest block">Project Type</span>
+                  <span className="text-[11px] font-mono text-muted-foreground/50 uppercase tracking-widest block">Project Type</span>
                   <span className="text-xs text-foreground/70 font-light">Commercial Film</span>
                 </div>
                 <div>
-                  <span className="text-[8px] font-mono text-muted-foreground/50 uppercase tracking-widest block">Location</span>
+                  <span className="text-[11px] font-mono text-muted-foreground/50 uppercase tracking-widest block">Location</span>
                   <span className="text-xs text-foreground/70 font-light">Bali, ID</span>
                 </div>
               </div>
@@ -463,7 +463,7 @@ export default function Collaboration() {
               >
                 <ChevronLeft className="w-5 h-5 text-foreground" />
               </button>
-              <span className="text-[10px] font-mono text-muted-foreground/80 tracking-widest bg-background/20 px-4 py-2 rounded-full glass">
+              <span className="text-[11px] font-mono text-muted-foreground/80 tracking-widest bg-background/20 px-4 py-2 rounded-full glass">
                 {(selectedClientIndex % clientLogos.length) + 1} / {clientLogos.length}
               </span>
               <button 

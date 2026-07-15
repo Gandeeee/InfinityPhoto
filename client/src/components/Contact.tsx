@@ -13,7 +13,7 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header Block */}
         <div className="text-center mb-20">
-          <span className="text-[9px] uppercase tracking-[0.35em] font-semibold text-primary mb-4 block">
+          <span className="text-[11px] uppercase tracking-[0.15em] font-semibold text-primary mb-4 block">
             Connect
           </span>
           <h2 
@@ -58,7 +58,7 @@ export default function Contact() {
                     <Mail className="w-4 h-4 text-primary" />
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider font-semibold text-foreground/80 mb-0.5">Email</p>
+                    <p className="text-[11px] uppercase tracking-wider font-semibold text-foreground/80 mb-0.5">Email</p>
                     <p className="text-sm text-muted-foreground font-light">infinityphotocontact@gmail.com</p>
                   </div>
                 </div>
@@ -68,7 +68,7 @@ export default function Contact() {
                     <Phone className="w-4 h-4 text-primary" />
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider font-semibold text-foreground/80 mb-0.5">Phone</p>
+                    <p className="text-[11px] uppercase tracking-wider font-semibold text-foreground/80 mb-0.5">Phone</p>
                     <p className="text-sm text-muted-foreground font-light">+6281 8056 10551</p>
                   </div>
                 </div>
@@ -78,7 +78,7 @@ export default function Contact() {
                     <MapPin className="w-4 h-4 text-primary" />
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase tracking-wider font-semibold text-foreground/80 mb-0.5">Location</p>
+                    <p className="text-[11px] uppercase tracking-wider font-semibold text-foreground/80 mb-0.5">Location</p>
                     <p className="text-sm text-muted-foreground font-light">Gianyar, Bali, Indonesia</p>
                   </div>
                 </div>
@@ -96,7 +96,7 @@ export default function Contact() {
                   data-testid="link-instagram"
                   asChild
                 >
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                  <a href="https://instagram.com/infinityphotobali" target="_blank" rel="noopener noreferrer">
                     <Instagram className="w-4 h-4" />
                   </a>
                 </Button>
@@ -107,7 +107,7 @@ export default function Contact() {
                   data-testid="link-facebook"
                   asChild
                 >
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                  <a href="https://facebook.com/infinityphotobali" target="_blank" rel="noopener noreferrer">
                     <Facebook className="w-4 h-4" />
                   </a>
                 </Button>

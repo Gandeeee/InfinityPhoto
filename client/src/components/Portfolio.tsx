@@ -89,7 +89,7 @@ export default function Portfolio() {
       <div className="px-6 md:px-12 lg:px-16 max-w-[1800px] mx-auto mb-12 select-none">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <span className="text-[9px] uppercase tracking-[0.35em] font-semibold text-primary mb-4 block">
+            <span className="text-[11px] uppercase tracking-[0.15em] font-semibold text-primary mb-4 block">
               Gallery
             </span>
             <h2
@@ -109,7 +109,7 @@ export default function Portfolio() {
                   setSelectedCategory(category.id);
                   closeLightbox();
                 }}
-                className={`text-[9px] uppercase tracking-[0.2em] font-semibold px-5 py-2.5 rounded-full border transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                className={`text-[11px] uppercase tracking-[0.1em] font-semibold px-5 py-2.5 rounded-full border transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
                   selectedCategory === category.id
                     ? "bg-primary border-primary text-primary-foreground shadow-sm"
                     : "bg-background/25 border-foreground/[0.08] text-foreground/50 hover:text-foreground hover:border-foreground/20"
@@ -122,7 +122,7 @@ export default function Portfolio() {
           </div>
         </div>
 
-        <p className="text-[9px] uppercase tracking-[0.22em] text-muted-foreground/35 mt-6 font-light select-none">
+        <p className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground/35 mt-6 font-light select-none">
           Drag or swipe to explore →
         </p>
       </div>
@@ -177,7 +177,7 @@ export default function Portfolio() {
 
                     {/* Caption scrim */}
                     <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-7">
-                      <span className="text-[9px] uppercase tracking-[0.22em] text-primary mb-2 font-semibold">
+                      <span className="text-[11px] uppercase tracking-[0.12em] text-primary mb-2 font-semibold">
                         {item.category} · {item.year}
                       </span>
                       <h3
@@ -189,7 +189,7 @@ export default function Portfolio() {
                     </div>
 
                     {/* Always-visible index tag */}
-                    <div className="absolute top-4 left-4 text-[9px] font-mono text-foreground/30 font-light tracking-widest">
+                    <div className="absolute top-4 left-4 text-[11px] font-mono text-foreground/30 font-light tracking-widest">
                       0{index + 1}
                     </div>
                   </div>
@@ -249,7 +249,7 @@ export default function Portfolio() {
                 <span className="font-serif text-base font-light text-foreground/80 tracking-wide">
                   {filteredItems[selectedImageIndex].title}
                 </span>
-                <span className="ml-3 text-[9px] font-mono text-foreground/35 tracking-widest">
+                <span className="ml-3 text-[11px] font-mono text-foreground/35 tracking-widest">
                   {filteredItems[selectedImageIndex].year}
                 </span>
               </div>
@@ -273,7 +273,7 @@ export default function Portfolio() {
               >
                 <ChevronLeft className="w-5 h-5 text-foreground" />
               </button>
-              <span className="text-[10px] font-mono text-muted-foreground/80 tracking-widest bg-background/20 px-4 py-2 rounded-full glass">
+              <span className="text-[11px] font-mono text-muted-foreground/80 tracking-widest bg-background/20 px-4 py-2 rounded-full glass">
                 {selectedImageIndex + 1} / {filteredItems.length}
               </span>
               <button 

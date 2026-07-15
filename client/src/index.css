@@ -25,6 +25,9 @@
   --accent: 42 30% 75%;             /* Muted Champagne/Bronze */
   --accent-foreground: 220 25% 12%;
 
+  --destructive: 12 45% 55%;         /* Warm Terracotta Rose — secondary accent */
+  --destructive-foreground: 0 0% 98%;
+
   /* Glassmorphism Variables */
   --glass-bg: rgba(255, 255, 255, 0.45);
   --glass-border: rgba(255, 255, 255, 0.65);
@@ -60,6 +63,9 @@
   
   --accent: 42 25% 65%;             /* Antique Gold */
   --accent-foreground: 224 32% 8%;
+
+  --destructive: 12 40% 50%;         /* Warm Terracotta Rose — secondary accent */
+  --destructive-foreground: 0 0% 98%;
 
   /* Glassmorphism Variables */
   --glass-bg: rgba(14, 18, 30, 0.45);
@@ -119,11 +125,15 @@
   }
 
   .transition-premium {
-    transition: all 0.7s cubic-bezier(0.32, 0.72, 0, 1);
+    transition: all 0.32s cubic-bezier(0.32, 0.72, 0, 1);
   }
 
   .transition-transform-premium {
-    transition: transform 0.7s cubic-bezier(0.32, 0.72, 0, 1);
+    transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .text-balance {
+    text-wrap: balance;
   }
 
   /* Decorative Ambient Mesh Backgrounds — Warm Gold / Bronze glow */

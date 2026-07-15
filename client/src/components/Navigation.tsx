@@ -47,7 +47,7 @@ export default function Navigation() {
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="font-serif text-xl font-extralight tracking-[0.22em] text-foreground/90 hover:text-foreground transition-colors duration-500 bg-transparent border-none cursor-pointer"
+            className="font-serif text-xl font-extralight tracking-[0.12em] text-foreground/90 hover:text-foreground transition-colors duration-500 bg-transparent border-none cursor-pointer"
             data-testid="button-logo"
           >
             INFINITY PHOTO
@@ -59,7 +59,7 @@ export default function Navigation() {
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="text-[10px] uppercase tracking-[0.18em] font-medium transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] px-4 py-2 rounded-full text-foreground/60 hover:text-foreground hover:bg-foreground/[0.04] bg-transparent border-none cursor-pointer"
+                className="text-[11px] uppercase tracking-[0.12em] font-medium transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] px-4 py-2 rounded-full text-foreground/60 hover:text-foreground hover:bg-foreground/[0.04] bg-transparent border-none cursor-pointer"
                 data-testid={`link-nav-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
               >
                 {item.label}
@@ -89,7 +89,7 @@ export default function Navigation() {
             <div className="ml-4 p-0.5 rounded-full border border-foreground/[0.08] bg-foreground/[0.02]">
               <button
                 onClick={() => scrollToSection("#contact")}
-                className="group flex items-center gap-2 rounded-full pl-5 pr-1.5 py-1.5 text-[10px] uppercase tracking-[0.18em] font-semibold text-foreground/75 hover:text-foreground transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] bg-transparent border-none cursor-pointer"
+                className="group flex items-center gap-2 rounded-full pl-5 pr-1.5 py-1.5 text-[11px] uppercase tracking-[0.12em] font-semibold text-foreground/75 hover:text-foreground transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] bg-transparent border-none cursor-pointer"
               >
                 <span>Book Now</span>
                 <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:scale-110">
@@ -172,7 +172,7 @@ export default function Navigation() {
                     <span className="font-serif text-3xl font-extralight text-foreground/80 group-hover:text-foreground tracking-tight transition-colors duration-300">
                       {item.label}
                     </span>
-                    <span className="text-[9px] font-mono text-foreground/20 group-hover:text-primary transition-colors duration-300 mb-2">
+                    <span className="text-[11px] font-mono text-foreground/20 group-hover:text-primary transition-colors duration-300 mb-2">
                       0{index + 1}
                     </span>
                   </motion.button>
@@ -188,7 +188,7 @@ export default function Navigation() {
               className="flex items-end justify-between border-t border-foreground/[0.05] pt-6"
             >
               <div>
-                <p className="text-[8px] uppercase tracking-[0.25em] text-foreground/25 mb-1 font-semibold">Theme</p>
+                <p className="text-[11px] uppercase tracking-[0.12em] text-foreground/25 mb-1 font-semibold">Theme</p>
                 <button
                   onClick={toggleTheme}
                   className="flex items-center gap-2 text-xs text-foreground/60 hover:text-foreground transition-colors duration-300 font-light bg-transparent border-none cursor-pointer p-0"
@@ -198,7 +198,7 @@ export default function Navigation() {
               </div>
 
               <div className="text-right">
-                <p className="text-[8px] uppercase tracking-[0.25em] text-foreground/25 mb-1 font-semibold">Based in</p>
+                <p className="text-[11px] uppercase tracking-[0.12em] text-foreground/25 mb-1 font-semibold">Based in</p>
                 <p className="text-xs text-foreground/50 font-light">Gianyar, Bali</p>
               </div>
             </motion.div>
