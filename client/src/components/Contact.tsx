@@ -1,126 +1,243 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Mail, Phone, MapPin, Instagram, Facebook } from "lucide-react";
-import ConceptBuilder from "@/components/ConceptBuilder";
+import { Mail, Phone, MapPin, Instagram, Facebook, ArrowUpRight, Check } from "lucide-react";
 
 export default function Contact() {
+  const [intent, setIntent] = useState<"client" | "partnership">("client");
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const phoneNumber = "6281805610551";
+    
+    let waText = "";
+    if (intent === "client") {
+      waText = `Hello Infinity Photo, I am ${name || "a client"}. I would like to inquire about booking a photography session.`;
+      if (message.trim()) {
+        waText += `\n\nDetails: ${message}`;
+      }
+    } else {
+      waText = `Hello Infinity Photo, I am ${name || "a venue representative"}. I would like to discuss a venue standby studio partnership.`;
+      if (message.trim()) {
+        waText += `\n\nDetails: ${message}`;
+      }
+    }
+
+    const encodedText = encodeURIComponent(waText);
+    const waLink = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+    
+    window.open(waLink, "_blank");
+  };
+
   return (
     <section 
       id="contact" 
-      className="py-36 md:py-48 px-6 mesh-contact overflow-hidden relative" 
-      data-testid="section-contact"
+      className="py-32 md:py-44 px-4 md:px-8 overflow-hidden relative bg-background" 
     >
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header Block */}
-        <div className="text-center mb-20">
-          <span className="text-[11px] uppercase tracking-[0.15em] font-semibold text-primary mb-4 block">
-            Connect
-          </span>
-          <h2 
-            className="font-serif text-5xl md:text-6xl font-light mb-6 text-foreground tracking-tight leading-[0.9]" 
-            data-testid="heading-contact"
-          >
-            Get In Touch
-          </h2>
-          <p className="text-muted-foreground text-sm md:text-base max-w-xl mx-auto leading-relaxed font-light">
-            Ready to capture your special moments? Contact us to discuss your photography needs
-          </p>
-        </div>
-
-        {/* Two Column Layout */}
-        <div className="grid md:grid-cols-12 gap-12 lg:gap-16 items-start">
-
-          {/* Left Column - Concept Builder Interactive Quote estimating calculator (md:col-span-7) */}
-          <motion.div
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header Block (Badge Eliminated, Clean Title & Copy) */}
+        <div className="text-center mb-16 md:mb-24">
+          <motion.h2 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
-            className="md:col-span-7 w-full flex"
+            className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-foreground tracking-tight leading-[1.05]"
           >
-            <ConceptBuilder />
+            Let's Connect
+          </motion.h2>
+          <p className="text-[#4A4A4A] text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-light">
+            Whether you are booking an editorial session or exploring a venue partnership, we would love to hear from you.
+          </p>
+        </div>
+
+        {/* Two Column Layout */}
+        <div className="grid md:grid-cols-12 gap-6 lg:gap-10 items-stretch">
+
+          {/* Left Column - Smart Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 100, rotate: -2 }}
+            whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="md:col-span-7 flex flex-col origin-bottom-left"
+          >
+            <div className="rounded-2xl md:rounded-[1.5rem] bg-white border border-black/8 p-8 md:p-12 shadow-[0_8px_25px_rgba(0,0,0,0.03)] h-full flex flex-col justify-between">
+              <form onSubmit={handleSubmit} className="flex flex-col h-full justify-between gap-8">
+                <div className="space-y-8">
+                  {/* Intent Selector */}
+                  <div className="space-y-3">
+                    <label className="text-[11px] uppercase tracking-[0.14em] font-medium text-[#1A1A1A] block">
+                      I am interested in...
+                    </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                      {/* Option A - Client */}
+                      <button
+                        type="button"
+                        onClick={() => setIntent("client")}
+                        aria-pressed={intent === "client"}
+                        className={`cursor-pointer text-left w-full p-4 rounded-xl border transition-all duration-300 flex items-start gap-3.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                          intent === "client" 
+                            ? "bg-[#1A1A1A] text-white border-[#1A1A1A] shadow-sm" 
+                            : "bg-transparent text-[#333333] border-black/15 hover:border-black/35"
+                        }`}
+                      >
+                        <div className={`w-4 h-4 mt-0.5 rounded-full border flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${
+                          intent === "client" 
+                            ? "border-white bg-white text-black" 
+                            : "border-black/30"
+                        }`}>
+                          {intent === "client" && <Check className="w-2.5 h-2.5" strokeWidth={3} />}
+                        </div>
+                        <div>
+                          <span className="block text-sm font-medium mb-0.5">Booking a Session</span>
+                          <span className={`block text-xs font-light ${intent === "client" ? "text-white/80" : "text-foreground/60"}`}>For private events or portraits</span>
+                        </div>
+                      </button>
+
+                      {/* Option B - Partnership */}
+                      <button
+                        type="button"
+                        onClick={() => setIntent("partnership")}
+                        aria-pressed={intent === "partnership"}
+                        className={`cursor-pointer text-left w-full p-4 rounded-xl border transition-all duration-300 flex items-start gap-3.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                          intent === "partnership" 
+                            ? "bg-[#1A1A1A] text-white border-[#1A1A1A] shadow-sm" 
+                            : "bg-transparent text-[#333333] border-black/15 hover:border-black/35"
+                        }`}
+                      >
+                        <div className={`w-4 h-4 mt-0.5 rounded-full border flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${
+                          intent === "partnership" 
+                            ? "border-white bg-white text-black" 
+                            : "border-black/30"
+                        }`}>
+                          {intent === "partnership" && <Check className="w-2.5 h-2.5" strokeWidth={3} />}
+                        </div>
+                        <div>
+                          <span className="block text-sm font-medium mb-0.5">Venue Partnership</span>
+                          <span className={`block text-xs font-light ${intent === "partnership" ? "text-white/80" : "text-foreground/60"}`}>For hotel & venue directors</span>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Form Input Fields */}
+                  <div className="space-y-5">
+                    <div className="space-y-2">
+                      <label className="text-[11px] uppercase tracking-[0.14em] font-medium text-[#1A1A1A] block">
+                        {intent === "client" ? "Full Name" : "Company / Venue Name"}
+                      </label>
+                      <input 
+                        type="text" 
+                        required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder={intent === "client" ? "Your full name" : "Your venue or hotel name"}
+                        className="w-full bg-stone-50 border border-black/12 focus:border-black/40 rounded-xl px-5 py-4 text-sm font-medium text-[#1A1A1A] placeholder:text-stone-400 outline-none transition-all duration-300"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <label className="text-[11px] uppercase tracking-[0.14em] font-medium text-[#1A1A1A] block">
+                        Short Message
+                      </label>
+                      <textarea 
+                        required
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        placeholder="Tell us a little bit about what you need..."
+                        rows={4}
+                        className="w-full bg-stone-50 border border-black/12 focus:border-black/40 rounded-xl px-5 py-4 text-sm font-medium text-[#1A1A1A] placeholder:text-stone-400 outline-none transition-all duration-300 resize-none"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* WhatsApp Action Button */}
+                <button
+                  type="submit"
+                  className="group w-full inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-xs uppercase tracking-[0.14em] font-medium bg-[#1A1A1A] text-white hover:bg-black transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 shadow-md mt-4"
+                >
+                  <span>Continue to WhatsApp</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.8} />
+                </button>
+              </form>
+            </div>
           </motion.div>
 
-          {/* Right Column - Direct Contact Information (md:col-span-5) */}
+          {/* Right Column - Direct Contact Information */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: 0.15 }}
-            className="md:col-span-5 space-y-10 flex flex-col justify-between"
+            className="md:col-span-5 flex flex-col"
           >
-            {/* Direct Contact info */}
-            <div>
-              <h3 className="font-serif text-2xl font-light mb-6 text-foreground tracking-wide">Contact Information</h3>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4" data-testid="info-email">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-4 h-4 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-[11px] uppercase tracking-wider font-semibold text-foreground/80 mb-0.5">Email</p>
-                    <p className="text-sm text-muted-foreground font-light">infinityphotocontact@gmail.com</p>
-                  </div>
-                </div>
+            <div className="rounded-2xl md:rounded-[1.5rem] bg-white border border-black/8 p-8 md:p-10 shadow-[0_8px_25px_rgba(0,0,0,0.03)] h-full flex flex-col justify-between">
+              <div>
+                <h3 className="font-serif text-2xl md:text-3xl font-light mb-8 text-[#1A1A1A] tracking-wide">
+                  Direct Information
+                </h3>
                 
-                <div className="flex items-start gap-4" data-testid="info-phone">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-4 h-4 text-primary" />
+                <div className="space-y-7">
+                  <div className="flex items-start gap-4 group">
+                    <div className="w-11 h-11 rounded-full bg-[#FDFBF7] border border-black/5 flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+                      <Mail className="w-4 h-4 text-[#C5A059]" strokeWidth={1.8} />
+                    </div>
+                    <div className="pt-0.5">
+                      <p className="text-[10px] uppercase tracking-widest font-medium text-foreground/50 mb-1">Email</p>
+                      <p className="text-sm md:text-base text-[#1A1A1A] font-medium">infinityphotocontact@gmail.com</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-[11px] uppercase tracking-wider font-semibold text-foreground/80 mb-0.5">Phone</p>
-                    <p className="text-sm text-muted-foreground font-light">+6281 8056 10551</p>
+                  
+                  <div className="flex items-start gap-4 group">
+                    <div className="w-11 h-11 rounded-full bg-[#FDFBF7] border border-black/5 flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+                      <Phone className="w-4 h-4 text-[#C5A059]" strokeWidth={1.8} />
+                    </div>
+                    <div className="pt-0.5">
+                      <p className="text-[10px] uppercase tracking-widest font-medium text-foreground/50 mb-1">Phone / WhatsApp</p>
+                      <p className="text-sm md:text-base text-[#1A1A1A] font-medium">+62 818 0561 0551</p>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="flex items-start gap-4" data-testid="info-location">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-4 h-4 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-[11px] uppercase tracking-wider font-semibold text-foreground/80 mb-0.5">Location</p>
-                    <p className="text-sm text-muted-foreground font-light">Gianyar, Bali, Indonesia</p>
+                  
+                  <div className="flex items-start gap-4 group">
+                    <div className="w-11 h-11 rounded-full bg-[#FDFBF7] border border-black/5 flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+                      <MapPin className="w-4 h-4 text-[#C5A059]" strokeWidth={1.8} />
+                    </div>
+                    <div className="pt-0.5">
+                      <p className="text-[10px] uppercase tracking-widest font-medium text-foreground/50 mb-1">Location</p>
+                      <p className="text-sm md:text-base text-[#1A1A1A] font-medium">Gianyar, Bali, Indonesia</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Socials */}
-            <div>
-              <h3 className="font-serif text-2xl font-light mb-4 text-foreground tracking-wide">Follow Us</h3>
-              <div className="flex gap-4">
-                <Button 
-                  variant="outline" 
-                  size="icon" 
-                  className="rounded-full bg-background/30 hover:bg-primary border border-foreground/[0.08] hover:text-primary-foreground hover:border-primary transition-all duration-500 w-10 h-10" 
-                  data-testid="link-instagram"
-                  asChild
-                >
-                  <a href="https://instagram.com/infinityphotobali" target="_blank" rel="noopener noreferrer">
-                    <Instagram className="w-4 h-4" />
+              {/* Social Media Section */}
+              <div className="mt-10 pt-8 border-t border-black/8">
+                <h4 className="font-serif text-xl font-light mb-4 text-[#1A1A1A] tracking-wide">
+                  Social Media
+                </h4>
+                <div className="flex gap-3">
+                  <a 
+                    href="https://instagram.com/infinityphotobali" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-11 h-11 rounded-full border border-black/15 bg-transparent flex items-center justify-center transition-all duration-300 hover:bg-[#1A1A1A] hover:text-white group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+                    aria-label="Instagram"
+                  >
+                    <Instagram className="w-4 h-4 transition-colors" strokeWidth={1.8} />
                   </a>
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="icon" 
-                  className="rounded-full bg-background/30 hover:bg-primary border border-foreground/[0.08] hover:text-primary-foreground hover:border-primary transition-all duration-500 w-10 h-10" 
-                  data-testid="link-facebook"
-                  asChild
-                >
-                  <a href="https://facebook.com/infinityphotobali" target="_blank" rel="noopener noreferrer">
-                    <Facebook className="w-4 h-4" />
+                  <a 
+                    href="https://facebook.com/infinityphotobali" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-11 h-11 rounded-full border border-black/15 bg-transparent flex items-center justify-center transition-all duration-300 hover:bg-[#1A1A1A] hover:text-white group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
+                    aria-label="Facebook"
+                  >
+                    <Facebook className="w-4 h-4 transition-colors" strokeWidth={1.8} />
                   </a>
-                </Button>
-              </div>
-            </div>
-
-            {/* Business Hours glass card */}
-            <div className="glass rounded-[2rem] p-7 md:p-8">
-              <h4 className="font-serif text-lg font-light mb-3 text-foreground tracking-wide">Business Hours</h4>
-              <div className="space-y-1.5 text-xs text-muted-foreground font-light">
-                <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                <p>Saturday: 10:00 AM - 4:00 PM</p>
-                <p>Sunday: By Appointment</p>
+                </div>
               </div>
             </div>
           </motion.div>

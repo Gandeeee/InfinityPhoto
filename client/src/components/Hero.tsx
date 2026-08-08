@@ -3,7 +3,6 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@assets/generated_images/Hero_wedding_couple_sunset_7f3ae820.png";
-import LiquidHeroCanvas from "@/components/ui/LiquidHeroCanvas";
 
 export default function Hero() {
   const isReducedMotion = useReducedMotion();
@@ -25,165 +24,92 @@ export default function Hero() {
   });
 
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", isReducedMotion ? "0%" : "12%"]);
-
-  // The wedding image is clipped to ONLY be visible through the letterforms
-  const clipTextStyle: React.CSSProperties = {
-    backgroundImage: `url(${heroImage})`,
-    backgroundClip: "text",
-    WebkitBackgroundClip: "text",
-    color: "transparent",
-    backgroundSize: "140% auto",
-    backgroundPosition: "center 40%",
-  };
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", isReducedMotion ? "0%" : "15%"]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1.05, 1]);
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[100dvh] w-full overflow-hidden flex bg-background"
+      className="relative min-h-[100dvh] w-full flex items-center justify-center bg-[#050505] overflow-hidden px-4 md:px-8 py-28 md:py-36"
       data-testid="section-hero"
     >
-      {/* Three.js Liquid Distortion WebGL Canvas */}
-      <LiquidHeroCanvas />
-
-      {/* Translucent overlay to blend the canvas nicely with the theme background */}
-      <div className="absolute inset-0 bg-background/25 dark:bg-background/40 z-[1] pointer-events-none" />
-
-      {/* Hairline horizontal rule mid-section */}
-      <div className="absolute left-0 right-0 top-1/2 h-[1px] bg-foreground/[0.03] z-[2] pointer-events-none" />
-
-      {/* Main content wrapper */}
-      <motion.div
-        className="relative z-10 flex flex-col md:flex-row items-stretch w-full min-h-[100dvh]"
-        style={{ opacity: contentOpacity }}
+      {/* Background Image Layer with Parallax Scale */}
+      <motion.div 
+        className="absolute inset-0 z-0 origin-center"
+        style={{ scale: bgScale }}
       >
-        {/* LEFT: Giant clipped typography block */}
-        <motion.div
-          className="flex-1 flex flex-col justify-center pl-4 sm:pl-8 md:pl-12 lg:pl-16 pt-28 pb-12 md:pt-0 md:pb-0"
-          style={{ y: textY }}
+        <img
+          src={heroImage}
+          alt="Infinity Photo Editorial Photography"
+          decoding="async"
+          className="w-full h-full object-cover object-center opacity-90"
+        />
+      </motion.div>
+      
+      {/* Vantablack radial fade vignette effect */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#050505_100%)] pointer-events-none z-[1]" />
+      <div className="absolute inset-0 bg-black/40 z-[2] pointer-events-none" />
+
+      {/* Main Content (High-End Editorial Archetype) */}
+      <motion.div 
+        className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center text-center mt-12 md:mt-0"
+        style={{ opacity: contentOpacity, y: textY }}
+      >
+        {/* Editorial Headline with Mask Reveal */}
+        <div className="overflow-hidden mb-8 md:mb-10 px-2 py-4 -my-4 -mx-2">
+          <motion.h1
+            initial={{ opacity: 0, y: 120, rotate: 2 }}
+            animate={{ opacity: 1, y: 0, rotate: 0 }}
+            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            className="font-serif text-5xl md:text-7xl lg:text-[6.5rem] font-light leading-[1.05] tracking-[-0.02em] text-white max-w-5xl origin-bottom-left"
+          >
+            Timeless Imagery. <br className="hidden md:block"/>
+            <span className="italic text-white/80">Elevated Experiences.</span>
+          </motion.h1>
+        </div>
+
+        {/* Subheadline with enhanced contrast & WCAG AA readability */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.32, 0.72, 0, 1], delay: 0.2 }}
+          className="mt-2 mb-16 md:mb-20 text-base md:text-lg font-light text-white/80 max-w-[62ch] leading-relaxed mx-auto"
         >
-          {/* Eyebrow line */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="mb-6 md:mb-8"
+          Editorial photography for private moments, seamlessly paired with standby studio concepts for luxury venues.
+        </motion.p>
+
+        {/* Uncluttered High-End Editorial Dual CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.32, 0.72, 0, 1], delay: 0.3 }}
+          className="flex flex-col sm:flex-row items-center gap-5 md:gap-6"
+        >
+          {/* Primary CTA (B2C) - Soft Champagne Pill */}
+          <Button
+            variant="outline"
+            className="group rounded-full px-8 py-7 h-auto w-full sm:w-auto border-transparent bg-[#E8DCC4] hover:bg-[#dfd2b8] text-[#050505] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] shadow-lg flex items-center justify-center cursor-pointer"
+            onClick={() => scrollToSection("portfolio")}
           >
-            <span className="text-[11px] uppercase tracking-[0.15em] font-semibold text-foreground/45">
-              Premium Photography · Bali, Indonesia
+            <span className="text-xs uppercase tracking-[0.14em] font-medium text-[#050505] mr-2">
+              Book Your Session
             </span>
-          </motion.div>
+            <ArrowUpRight className="w-4 h-4 text-[#050505] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-0.5" strokeWidth={1.8} />
+          </Button>
 
-          {/* INFINITY — photo visible ONLY through letters */}
-          <div className="overflow-hidden leading-none">
-            <motion.div
-              initial={{ opacity: 0, y: isReducedMotion ? 0 : 80 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1], delay: 0.22 }}
-            >
-              <span
-                className="block font-serif font-extralight leading-[0.85] select-none tracking-[-0.03em]"
-                style={{
-                  ...clipTextStyle,
-                  fontSize: "clamp(3.5rem, 17vw, 18rem)",
-                  backgroundPosition: "20% 35%",
-                }}
-                data-testid="text-brand-name"
-              >
-                INFINITY
-              </span>
-            </motion.div>
-          </div>
-
-          {/* PHOTO — different crop of the same image */}
-          <div className="overflow-hidden leading-none">
-            <motion.div
-              initial={{ opacity: 0, y: isReducedMotion ? 0 : 80 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1], delay: 0.38 }}
-            >
-              <span
-                className="block font-serif font-extralight leading-[0.85] select-none tracking-[-0.03em]"
-                style={{
-                  ...clipTextStyle,
-                  fontSize: "clamp(3.5rem, 17vw, 18rem)",
-                  backgroundPosition: "70% 65%",
-                }}
-              >
-                PHOTO
-              </span>
-            </motion.div>
-          </div>
-
-          {/* Mobile: CTA appears below text */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.72 }}
-            className="mt-12 md:hidden"
+          {/* Secondary CTA (B2B) - Subtle Glassmorphism Pill */}
+          <Button
+            variant="outline"
+            className="group rounded-full px-8 py-7 h-auto w-full sm:w-auto border-white/25 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] flex items-center justify-center cursor-pointer"
+            onClick={() => scrollToSection("partnership")}
           >
-            <div className="p-0.5 rounded-full glass inline-block">
-              <Button
-                variant="outline"
-                className="group rounded-full pl-6 pr-2 py-5 bg-transparent border-transparent text-foreground hover:bg-foreground/[0.04] hover:border-transparent transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
-                onClick={() => scrollToSection("contact")}
-                data-testid="button-cta-hero"
-              >
-                <span className="text-[11px] uppercase tracking-[0.1em] font-medium mr-3">
-                  Get In Touch
-                </span>
-                <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:scale-110">
-                  <ArrowUpRight className="w-3.5 h-3.5 text-primary-foreground" />
-                </div>
-              </Button>
-            </div>
-          </motion.div>
+            <span className="text-xs uppercase tracking-[0.14em] font-medium text-white mr-2">
+              Partner With Us
+            </span>
+            <ArrowUpRight className="w-4 h-4 text-white transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-0.5" strokeWidth={1.8} />
+          </Button>
         </motion.div>
 
-        {/* RIGHT: Slim vertical sidebar — desktop only, styled with glassmorphism */}
-        <motion.aside
-          initial={{ opacity: 0, x: 32 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.68 }}
-          className="hidden md:flex flex-col justify-between w-52 lg:w-64 border-l border-foreground/[0.05] glass px-8 lg:px-10 py-24 flex-shrink-0"
-        >
-          {/* Vertically rotated tagline */}
-          <div className="flex items-start">
-            <p
-              className="font-serif text-[11px] italic font-light text-foreground/45 leading-loose"
-              style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-              data-testid="text-tagline"
-            >
-              Wedding & editorial photography across Bali
-            </p>
-          </div>
-
-          {/* Location info + CTA */}
-          <div className="flex flex-col gap-8">
-            <div>
-              <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/25 mb-1.5 font-semibold">
-                Based in
-              </p>
-              <p className="text-xs text-foreground/50 font-light">Gianyar, Bali</p>
-            </div>
-
-            <div className="p-0.5 rounded-full border border-foreground/[0.06] bg-foreground/[0.02] group">
-              <Button
-                variant="outline"
-                className="group rounded-full pl-5 pr-1.5 py-5 w-full bg-transparent border-transparent text-foreground hover:bg-foreground/[0.04] hover:border-transparent transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
-                onClick={() => scrollToSection("contact")}
-                data-testid="button-cta-hero-desktop"
-              >
-                <span className="text-[11px] uppercase tracking-[0.1em] font-medium flex-1 text-left">
-                  Get In Touch
-                </span>
-                <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:scale-110">
-                  <ArrowUpRight className="w-3.5 h-3.5 text-primary-foreground" />
-                </div>
-              </Button>
-            </div>
-          </div>
-        </motion.aside>
       </motion.div>
     </section>
   );

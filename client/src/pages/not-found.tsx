@@ -18,18 +18,16 @@ export default function NotFound() {
       </p>
 
       {/* Premium Pill button back home */}
-      <div className="p-1 rounded-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 group flex">
-        <Link href="/">
-          <Button
-            className="rounded-full pl-6 pr-2 py-6 bg-primary text-white hover:bg-primary/95 transition-premium"
-          >
-            <span className="text-xs uppercase tracking-[0.2em] font-medium mr-2">Return Home</span>
-            <div className="w-8 h-8 rounded-full bg-white/25 flex items-center justify-center transition-premium group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:scale-105">
-              <ArrowUpRight className="w-4 h-4 text-white" />
-            </div>
-          </Button>
-        </Link>
-      </div>
+      <Link href="/">
+        <Button
+          className="group rounded-full pl-6 pr-2 py-6 h-auto transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] cursor-pointer focus-visible:ring-2 focus-visible:ring-primary/70"
+        >
+          <span className="text-xs uppercase tracking-[0.12em] font-semibold text-primary-foreground mr-2">Return Home</span>
+          <div className="w-8 h-8 rounded-full bg-primary-foreground/15 flex items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1">
+            <ArrowUpRight className="w-4 h-4 text-primary-foreground" strokeWidth={1.5} />
+          </div>
+        </Button>
+      </Link>
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Handshake, Calendar, TrendingUp, ArrowUpRight, X, ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Handshake, Calendar, Sparkles, ArrowUpRight, X, ChevronLeft, ChevronRight } from "lucide-react";
 
 // Client Logos
 import clientLogo1 from "@assets/generated_images/logo_circuswp.png";
@@ -13,29 +12,65 @@ import clientLogo6 from "@assets/generated_images/logo_villaombak.png";
 
 const opportunities = [
   {
-    icon: Handshake,
-    title: "Partnership Programs",
-    description: "Long-term collaboration with hotels, resorts, and wedding planners",
+    icon: Sparkles,
+    title: "Commercial & Brand Campaigns",
+    description: "Editorial visual direction, lookbooks, and commercial imagery tailored for luxury, fashion, and lifestyle brands.",
   },
   {
     icon: Calendar,
-    title: "Event Coverage",
-    description: "Regular coverage for corporate events and recurring occasions",
+    title: "Corporate Event Retainers",
+    description: "Dedicated documentation for high-profile summits, galas, and recurring corporate engagements.",
   },
   {
-    icon: TrendingUp,
-    title: "Brand Collaborations",
-    description: "Creative partnerships with lifestyle and luxury brands",
+    icon: Handshake,
+    title: "Planner & Agency Partnerships",
+    description: "Preferred photography partner status for elite wedding planners, event producers, and creative agencies.",
   },
 ];
 
 const clientLogos = [
-  { name: "Circus Waterpark Bali", category: "Commercial Brand Campaign", img: clientLogo1 },
-  { name: "Hotel Pandawa Hill Resort", category: "Hospitality & Architecture Visuals", img: clientLogo2 },
-  { name: "Lombok Wildlife Park", category: "Eco-Tourism Promotion Campaign", img: clientLogo3 },
-  { name: "Hotel Ombak Sunset Gili", category: "Luxury Destination Marketing", img: clientLogo4 },
-  { name: "Ubud Luxury Villas & Spa", category: "Premium Resort Editorial Portfolio", img: clientLogo5 },
-  { name: "Hotel Villa Ombak Gili", category: "Tropical Destination Brand Shooting", img: clientLogo6 },
+  { 
+    name: "Hotel Pandawa Hill Resort", 
+    partnership: "Official Standby Studio Partner", 
+    testimonial: "Infinity Photo's standby corner added a refined guest amenity while generating steady passive revenue with zero operational effort on our part.", 
+    category: "Hospitality & Architecture Visuals", 
+    img: clientLogo2 
+  },
+  { 
+    name: "Hotel Ombak Sunset Gili", 
+    partnership: "Exclusive Sunset Studio Partner", 
+    testimonial: "Our guests adore the instant luxury print service. It elevated our beach resort experience significantly.", 
+    category: "Luxury Destination Marketing", 
+    img: clientLogo4 
+  },
+  { 
+    name: "Ubud Luxury Villas & Spa", 
+    partnership: "Preferred Editorial Photography Partner", 
+    testimonial: "The visual quality and professional staging brought our brand storytelling to a whole new editorial standard.", 
+    category: "Premium Resort Editorial Portfolio", 
+    img: clientLogo5 
+  },
+  { 
+    name: "Circus Waterpark Bali", 
+    partnership: "Commercial Campaign Partner", 
+    testimonial: "High energy, meticulous detail, and seamless campaign execution. Highly recommended production team.", 
+    category: "Commercial Brand Campaign", 
+    img: clientLogo1 
+  },
+  { 
+    name: "Lombok Wildlife Park", 
+    partnership: "Eco-Tourism Destination Partner", 
+    testimonial: "They captured the natural beauty of our property and wildlife with incredible grace and warmth.", 
+    category: "Eco-Tourism Promotion Campaign", 
+    img: clientLogo3 
+  },
+  { 
+    name: "Hotel Villa Ombak Gili", 
+    partnership: "Standby Photo Corner Partner", 
+    testimonial: "A seamless 1x1m setup that integrated naturally into our lobby aesthetic, delighting couples every evening.", 
+    category: "Tropical Destination Brand Shooting", 
+    img: clientLogo6 
+  },
 ];
 
 export default function Collaboration() {
@@ -44,6 +79,9 @@ export default function Collaboration() {
   const [isInteracting, setIsInteracting] = useState(false);
   
   const scrollRef = useRef<HTMLDivElement>(null);
+  const firstSetRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  
   const isDraggingRef = useRef(false);
   const startXRef = useRef(0);
   const scrollLeftRef = useRef(0);
@@ -60,10 +98,7 @@ export default function Collaboration() {
     }
   };
 
-  // Triple the logos for a seamless infinite loop
-  const marqueeLogos = [...clientLogos, ...clientLogos, ...clientLogos];
-
-  // Auto-scroll loop
+  // Auto-scroll loop and Parabolic Arc Calculation
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
@@ -71,15 +106,36 @@ export default function Collaboration() {
     const scrollSpeed = 0.8; // px per frame
 
     const step = () => {
-      if (!isInteracting && !isDraggingRef.current && selectedClientIndex === null) {
-        // Infinite wrap-around check
-        const limit = scrollContainer.scrollWidth / 3;
+      // 1. Handle auto-scrolling & seamless infinite loop
+      if (!isInteracting && !isDraggingRef.current && selectedClientIndex === null && firstSetRef.current) {
+        const limit = firstSetRef.current.offsetWidth;
         if (scrollContainer.scrollLeft >= limit) {
-          scrollContainer.scrollLeft = 0;
+          // Pixel-perfect jump (subtract exact width to maintain sub-pixel momentum)
+          scrollContainer.scrollLeft -= limit;
         } else {
           scrollContainer.scrollLeft += scrollSpeed;
         }
       }
+
+      // 2. High-Performance Parabolic Arc
+      const halfWidth = scrollContainer.clientWidth / 2;
+      const centerScroll = scrollContainer.scrollLeft + halfWidth;
+
+      cardsRef.current.forEach((card) => {
+        if (!card) return;
+        // offsetLeft is relative to the flex container which is perfect for calculation
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const dist = Math.abs(cardCenter - centerScroll);
+        
+        // y = a * dist^2 (Parabola)
+        // At the edge of the screen (dist = halfWidth), it will dip by exactly 60px
+        const dipAmount = 60; 
+        const yOffset = (dist * dist) * (dipAmount / (halfWidth * halfWidth));
+        
+        // Apply transform directly bypassing React (Zero Lag)
+        card.style.transform = `translate3d(0, ${yOffset}px, 0)`;
+      });
+
       animationFrameRef.current = requestAnimationFrame(step);
     };
 
@@ -110,7 +166,7 @@ export default function Collaboration() {
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDraggingRef.current) return;
     const container = scrollRef.current;
-    if (!container) return;
+    if (!container || !firstSetRef.current) return;
 
     e.preventDefault();
     const x = e.pageX - container.offsetLeft;
@@ -118,15 +174,15 @@ export default function Collaboration() {
     let newScrollLeft = scrollLeftRef.current - walk;
 
     // Boundary wrap-around check during active dragging
-    const limit = container.scrollWidth / 3;
+    const limit = firstSetRef.current.offsetWidth;
     if (newScrollLeft <= 0) {
-      newScrollLeft = limit;
+      newScrollLeft += limit;
       startXRef.current = e.pageX - container.offsetLeft;
-      scrollLeftRef.current = limit;
+      scrollLeftRef.current = newScrollLeft;
     } else if (newScrollLeft >= limit) {
-      newScrollLeft = 0;
+      newScrollLeft -= limit;
       startXRef.current = e.pageX - container.offsetLeft;
-      scrollLeftRef.current = 0;
+      scrollLeftRef.current = newScrollLeft;
     }
 
     container.scrollLeft = newScrollLeft;
@@ -162,57 +218,43 @@ export default function Collaboration() {
   const nextClient = (e?: React.MouseEvent) => {
     e?.stopPropagation();
     if (selectedClientIndex !== null) {
-      setSelectedClientIndex((selectedClientIndex + 1) % marqueeLogos.length);
+      setSelectedClientIndex((selectedClientIndex + 1) % clientLogos.length);
     }
   };
 
   const prevClient = (e?: React.MouseEvent) => {
     e?.stopPropagation();
     if (selectedClientIndex !== null) {
-      setSelectedClientIndex((selectedClientIndex - 1 + marqueeLogos.length) % marqueeLogos.length);
+      setSelectedClientIndex((selectedClientIndex - 1 + clientLogos.length) % clientLogos.length);
     }
   };
 
   return (
     <section 
       id="collaboration" 
-      className="py-36 md:py-48 bg-background overflow-hidden relative" 
+      className="py-32 md:py-44 bg-background overflow-hidden relative" 
       data-testid="section-collaboration"
     >
-      {/* Self-contained CSS Marquee stylesheet */}
-      <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-33.333%); }
-        }
-        .animate-marquee-scroll {
-          animation: marquee 30s linear infinite;
-        }
-        .animate-marquee-scroll:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
-
-      {/* Content layout wrapper */}
-      <div className="max-w-5xl mx-auto text-center relative z-10 px-6">
+      <div className="max-w-6xl mx-auto text-center relative z-10 px-4 md:px-8">
         {/* Header Block */}
-        <div className="mb-20">
-          <span className="text-[11px] uppercase tracking-[0.15em] font-semibold text-primary mb-4 block">
-            Opportunities
-          </span>
-          <h2 
-            className="font-serif text-5xl md:text-6xl font-light mb-6 text-foreground tracking-tight leading-[0.9]" 
+        <div className="mb-16 md:mb-20">
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
+            className="font-serif text-4xl md:text-5xl lg:text-6xl font-light mb-6 text-foreground tracking-tight leading-[1.05] max-w-4xl mx-auto" 
             data-testid="heading-collaboration"
           >
-            Collaboration
-          </h2>
-          <p className="text-muted-foreground text-sm md:text-base max-w-xl mx-auto leading-relaxed font-light">
-            We welcome partnerships with businesses and creatives who share our passion for excellence and artistry
+            Co-Creating Visual Excellence
+          </motion.h2>
+          <p className="text-[#4A4A4A] text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-light">
+            From editorial brand campaigns to recurring corporate galas, we partner with visionary creative directors, agencies, and luxury brands.
           </p>
         </div>
 
-        {/* Opportunities grid using glass cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        {/* Opportunities Grid with Soft Elevated Warm Cards */}
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-16 md:mb-20">
           {opportunities.map((opportunity, index) => {
             const Icon = opportunity.icon;
             return (
@@ -221,23 +263,23 @@ export default function Collaboration() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: index * 0.1 }}
-                className="group flex animate-fade-up"
+                transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: index * 0.12 }}
+                className="group flex"
               >
-                <div className="glass rounded-[2rem] p-8 flex flex-col items-center text-center w-full justify-between h-full hover:scale-[1.01] transition-transform duration-500">
+                <div className="rounded-2xl md:rounded-[1.25rem] bg-white border border-black/8 p-7 md:p-8 flex flex-col items-center text-center w-full justify-between h-full shadow-[0_8px_25px_rgba(0,0,0,0.03)] hover:scale-[1.015] transition-transform duration-500">
                   <div>
-                    <div className="inline-flex items-center justify-center w-11 h-11 mb-5 rounded-full bg-primary/10 border border-primary/20 transition-all duration-500 group-hover:scale-105">
-                      <Icon className="w-4 h-4 text-primary" />
+                    <div className="inline-flex items-center justify-center w-10 h-10 mb-5 rounded-full bg-[#FDFBF7] border border-black/5">
+                      <Icon className="w-4 h-4 text-[#C5A059]" strokeWidth={1.8} />
                     </div>
                     <h3 
-                      className="font-serif text-lg md:text-xl font-light mb-3 text-foreground tracking-wide" 
+                      className="font-serif text-xl font-light mb-3 text-[#1A1A1A] tracking-wide" 
                       data-testid={`text-opportunity-title-${index}`}
                     >
                       {opportunity.title}
                     </h3>
                   </div>
                   <p 
-                    className="text-xs text-muted-foreground leading-relaxed font-light mt-4" 
+                    className="text-xs md:text-sm text-[#4A4A4A] leading-relaxed font-light mt-3" 
                     data-testid={`text-opportunity-desc-${index}`}
                   >
                     {opportunity.description}
@@ -248,230 +290,312 @@ export default function Collaboration() {
           })}
         </div>
 
-        {/* Call To Action Box (Glass panel) */}
+        {/* Bottom Banner Card */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: 0.2 }}
-          className="flex group mb-24"
+          className="flex group mb-20 md:mb-28"
         >
-          <div className="glass rounded-[2.5rem] p-8 md:p-12 w-full text-center">
-            <h3 className="font-serif text-3xl font-light mb-4 text-foreground tracking-wide leading-tight">
-              Let's Create Something Beautiful Together
+          <div className="rounded-2xl md:rounded-[1.5rem] bg-white border border-black/8 p-8 md:p-14 w-full text-center shadow-[0_8px_25px_rgba(0,0,0,0.03)]">
+            <h3 className="font-serif text-2xl md:text-3xl font-light mb-4 text-[#1A1A1A] tracking-wide leading-tight max-w-2xl mx-auto">
+              Have a Creative Project in Mind?
             </h3>
-            <p className="text-muted-foreground text-xs md:text-sm leading-relaxed max-w-xl mx-auto mb-8 font-light">
-              Whether you're looking for short-term project collaboration or a long-term partnership, we'd love to hear from you.
+            <p className="text-[#4A4A4A] text-xs md:text-sm leading-relaxed max-w-xl mx-auto mb-8 font-light">
+              Whether you need a dedicated production team or a long-term retainer, let us bring your vision to life.
             </p>
-            <div className="inline-block p-0.5 rounded-full border border-foreground/[0.08] bg-foreground/[0.02]">
-              <Button 
-                onClick={handleContact} 
-                className="rounded-full pl-6 pr-2 py-5 bg-primary text-primary-foreground hover:bg-primary/95 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
-                data-testid="button-collaboration-contact"
-              >
-                <span className="text-xs uppercase tracking-[0.1em] font-medium mr-3">Get In Touch</span>
-                <div className="w-7 h-7 rounded-full bg-primary-foreground/15 flex items-center justify-center transition-all duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                  <ArrowUpRight className="w-3.5 h-3.5 text-primary-foreground" />
-                </div>
-              </Button>
-            </div>
+            
+            {/* Uncluttered Deep Charcoal Pill Button */}
+            <button 
+              onClick={handleContact} 
+              className="group inline-flex items-center gap-2 rounded-full px-8 py-4 text-xs uppercase tracking-[0.14em] font-medium bg-[#1A1A1A] text-white hover:bg-black transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 shadow-md"
+              data-testid="button-collaboration-contact"
+            >
+              <span>Start a Collaboration</span>
+              <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.8} />
+            </button>
           </div>
         </motion.div>
+      </div>
 
-        {/* LOGO WALL: HORIZONTAL TICKER WITH MANUAL DRAG-SCROLL + AUTO-SCROLL LOOP */}
-        <div 
-          className="border-t border-foreground/[0.05] pt-16 relative overflow-hidden" 
-          data-testid="section-clients"
-        >
-          <span 
-            className="text-[11px] uppercase tracking-[0.12em] font-semibold text-muted-foreground/60 block text-center mb-10 select-none"
+      {/* 100% EDGE-TO-EDGE FULL-WIDTH PARTNER MARQUEE SECTION */}
+      <div 
+        className="w-full border-t border-black/8 pt-20 pb-12 relative overflow-hidden" 
+        data-testid="section-clients"
+      >
+        {/* Header Block (Centered) */}
+        <div className="max-w-4xl mx-auto text-center mb-12 px-4 relative z-20">
+          <h3 
+            className="font-serif text-3xl md:text-4xl font-light text-[#1A1A1A] tracking-tight mb-3"
             data-testid="heading-clients"
           >
-            Valued Partners & Clients
-          </span>
-          
-          {/* Draggable & Auto-scrolling Row Container — py expanded to py-16 to prevent clipping when zoomed up to 1.32x */}
-          <div 
-            ref={scrollRef}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUpOrLeave}
-            onMouseLeave={handleMouseUpOrLeave}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-            className="relative w-full flex overflow-x-auto scrollbar-hide py-16 cursor-grab active:cursor-grabbing select-none"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {/* Overlay gradients for fade borders, blending dynamically */}
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-15 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-15 pointer-events-none" />
-
-            {/* gap increased from 5 to 10 (2.5rem / 40px) to prevent zoomed cards from overlapping neighbors */}
-            <div className="flex gap-10 items-center w-max px-4">
-              {marqueeLogos.map((client, idx) => {
+            Trusted by Premier Venues & Brands
+          </h3>
+          <p className="text-xs md:text-sm text-[#4A4A4A] font-light max-w-lg mx-auto leading-relaxed">
+            Partnering with leading hospitality properties to capture unforgettable moments.
+          </p>
+        </div>
+        
+        {/* Full Bleed Marquee Viewport with Edge Fade Mask */}
+        <div 
+          ref={scrollRef}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUpOrLeave}
+          onMouseLeave={handleMouseUpOrLeave}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="w-full overflow-x-auto overflow-y-hidden scrollbar-hide pt-14 pb-24 md:pt-16 md:pb-32 cursor-grab active:cursor-grabbing select-none [mask-image:linear-gradient(to_right,transparent_0%,black_10%,black_90%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_10%,black_90%,transparent_100%)]"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          <div className="flex w-max px-12 relative">
+            {/* Set 1 (Used for offset calculation) */}
+            <div ref={firstSetRef} className="flex gap-8 md:gap-12 items-center pr-8 md:pr-12">
+              {clientLogos.map((client, idx) => {
                 const isHovered = hoveredIdx === idx;
+                const scale = isHovered ? 1.15 : 1;
                 
-                // Enhanced zoom scale and translate values
-                const scale = isHovered ? 1.32 : 1;
-                const y = isHovered ? -14 : 0;
-
                 return (
-                  <motion.div 
-                    key={idx}
-                    onMouseEnter={() => {
-                      setHoveredIdx(idx);
-                      setIsInteracting(true);
-                      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-                    }}
-                    onMouseLeave={() => {
-                      setHoveredIdx(null);
-                      setIsInteracting(false); // Resumes auto-scroll instantly upon mouse leave
-                    }}
-                    onClick={() => {
-                      // Click opens the client lightbox modal
-                      setSelectedClientIndex(idx);
-                    }}
-                    animate={{ scale, y }}
-                    transition={{ type: "spring", stiffness: 180, damping: 18 }}
-                    className={`relative p-1.5 rounded-[1.5rem] transition-all duration-300 select-none origin-bottom overflow-hidden cursor-pointer ${
-                      isHovered
-                        ? "glass border-primary/60 shadow-[0_0_25px_rgba(201,169,97,0.22)] bg-background/50"
-                        : "glass bg-background/25 border-foreground/[0.06]"
-                    }`}
+                  <div 
+                    key={`set1-${idx}`}
+                    ref={(el) => cardsRef.current[idx] = el}
+                    className="relative w-[160px] h-[100px] md:w-[270px] md:h-[155px]"
                   >
-                    {/* SURPRISE ME: Premium diagonal light-swipe shine sweep animation inside hovered card */}
-                    {isHovered && (
-                      <motion.div
-                        initial={{ x: "-150%" }}
-                        animate={{ x: "250%" }}
-                        transition={{ duration: 1.1, ease: "easeInOut" }}
-                        className="absolute inset-0 z-10 pointer-events-none"
-                        style={{
-                          background: "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent)",
-                          skewX: -24,
-                        }}
-                      />
-                    )}
-
-                    {/* Outer Outline box is the hover trigger */}
-                    <div className="py-3 px-6 flex items-center justify-center bg-background/30 rounded-[calc(1.5rem-1.5px)] min-w-[170px] h-24 select-none pointer-events-none">
+                    <motion.div 
+                      onMouseEnter={() => {
+                        setHoveredIdx(idx);
+                        setIsInteracting(true);
+                        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+                      }}
+                      onMouseLeave={() => {
+                        setHoveredIdx(null);
+                        setIsInteracting(false);
+                      }}
+                      onClick={() => setSelectedClientIndex(idx)}
+                      animate={{ scale }}
+                      transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
+                      className={`w-full h-full rounded-2xl md:rounded-[1.25rem] bg-white border border-black/8 flex items-center justify-center p-4 md:p-8 cursor-pointer select-none overflow-hidden transition-shadow duration-300 ${
+                        isHovered
+                          ? "shadow-[0_20px_45px_rgba(197,160,89,0.15)] border-[#C5A059]/40 z-30"
+                          : "shadow-sm z-10"
+                      }`}
+                    >
                       <img 
                         src={client.img} 
                         alt={client.name} 
-                        className={`h-11 md:h-12 w-auto object-contain transition-all duration-500 ease-out ${
-                          isHovered ? "grayscale-0 opacity-100" : "grayscale opacity-45"
-                        }`}
+                        loading="lazy"
+                        decoding="async"
+                        className="max-h-10 md:max-h-16 max-w-[130px] md:max-w-full w-auto object-contain transition-opacity duration-300 opacity-90 hover:opacity-100"
+                        style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
                         draggable={false}
                       />
-                    </div>
-                  </motion.div>
+                    </motion.div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Set 2 */}
+            <div className="flex gap-5 md:gap-12 items-center pr-5 md:pr-12">
+              {clientLogos.map((client, idx) => {
+                const globalIdx = idx + clientLogos.length;
+                const isHovered = hoveredIdx === globalIdx;
+                const scale = isHovered ? 1.15 : 1;
+                
+                return (
+                  <div 
+                    key={`set2-${idx}`}
+                    ref={(el) => cardsRef.current[globalIdx] = el}
+                    className="relative w-[160px] h-[100px] md:w-[270px] md:h-[155px]"
+                  >
+                    <motion.div 
+                      onMouseEnter={() => {
+                        setHoveredIdx(globalIdx);
+                        setIsInteracting(true);
+                        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+                      }}
+                      onMouseLeave={() => {
+                        setHoveredIdx(null);
+                        setIsInteracting(false);
+                      }}
+                      onClick={() => setSelectedClientIndex(idx)}
+                      animate={{ scale }}
+                      transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
+                      className={`w-full h-full rounded-2xl md:rounded-[1.25rem] bg-white border border-black/8 flex items-center justify-center p-4 md:p-8 cursor-pointer select-none overflow-hidden transition-shadow duration-300 ${
+                        isHovered
+                          ? "shadow-[0_20px_45px_rgba(197,160,89,0.15)] border-[#C5A059]/40 z-30"
+                          : "shadow-sm z-10"
+                      }`}
+                    >
+                      <img 
+                        src={client.img} 
+                        alt={client.name} 
+                        loading="lazy"
+                        decoding="async"
+                        className="max-h-10 md:max-h-16 max-w-[130px] md:max-w-full w-auto object-contain transition-opacity duration-300 opacity-90 hover:opacity-100"
+                        style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
+                        draggable={false}
+                      />
+                    </motion.div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Set 3 */}
+            <div className="flex gap-5 md:gap-12 items-center pr-5 md:pr-12">
+              {clientLogos.map((client, idx) => {
+                const globalIdx = idx + clientLogos.length * 2;
+                const isHovered = hoveredIdx === globalIdx;
+                const scale = isHovered ? 1.15 : 1;
+                
+                return (
+                  <div 
+                    key={`set3-${idx}`}
+                    ref={(el) => cardsRef.current[globalIdx] = el}
+                    className="relative w-[160px] h-[100px] md:w-[270px] md:h-[155px]"
+                  >
+                    <motion.div 
+                      onMouseEnter={() => {
+                        setHoveredIdx(globalIdx);
+                        setIsInteracting(true);
+                        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+                      }}
+                      onMouseLeave={() => {
+                        setHoveredIdx(null);
+                        setIsInteracting(false);
+                      }}
+                      onClick={() => setSelectedClientIndex(idx)}
+                      animate={{ scale }}
+                      transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
+                      className={`w-full h-full rounded-2xl md:rounded-[1.25rem] bg-white border border-black/8 flex items-center justify-center p-4 md:p-8 cursor-pointer select-none overflow-hidden transition-shadow duration-300 ${
+                        isHovered
+                          ? "shadow-[0_20px_45px_rgba(197,160,89,0.15)] border-[#C5A059]/40 z-30"
+                          : "shadow-sm z-10"
+                      }`}
+                    >
+                      <img 
+                        src={client.img} 
+                        alt={client.name} 
+                        loading="lazy"
+                        decoding="async"
+                        className="max-h-10 md:max-h-16 max-w-[130px] md:max-w-full w-auto object-contain transition-opacity duration-300 opacity-90 hover:opacity-100"
+                        style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
+                        draggable={false}
+                      />
+                    </motion.div>
+                  </div>
                 );
               })}
             </div>
           </div>
         </div>
-
       </div>
 
-      {/* CLIENT LIGHTBOX OVERLAY */}
+      {/* CLIENT TESTIMONIAL LIGHTBOX OVERLAY */}
       <AnimatePresence>
         {selectedClientIndex !== null && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex flex-col items-center justify-center glass-heavy px-4 py-8"
+            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/80 backdrop-blur-xl px-4 py-8"
             onClick={closeLightbox}
           >
             {/* Close Button */}
             <button
               onClick={closeLightbox}
-              className="absolute top-6 right-6 text-foreground/50 hover:text-foreground transition-colors p-2.5 rounded-full glass cursor-pointer z-55"
-              aria-label="Close brand showcase"
+              className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors p-3 rounded-full bg-white/10 hover:bg-white/20 cursor-pointer z-[55]"
+              aria-label="Close partner details"
             >
-              <X className="w-4 h-4" />
+              <X className="w-5 h-5" />
             </button>
 
-            {/* Desktop Side Left Nav Arrow */}
+            {/* Desktop Left Nav Arrow */}
             <button
               onClick={prevClient}
-              className="hidden md:flex absolute left-4 md:left-8 text-foreground/50 hover:text-foreground transition-colors p-3 rounded-full glass cursor-pointer z-55"
-              aria-label="Previous brand"
+              className="hidden md:flex absolute left-4 md:left-8 text-white/70 hover:text-white transition-colors p-4 rounded-full bg-white/10 hover:bg-white/20 cursor-pointer z-[55]"
+              aria-label="Previous partner"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-6 h-6" />
             </button>
 
-            {/* Showcase card wrapper */}
+            {/* Partner Detail Card */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.93 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.93 }}
+              initial={{ opacity: 0, scale: 0.94, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.94 }}
               transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
-              className="relative max-w-lg w-full glass rounded-[2.5rem] p-10 md:p-12 flex flex-col items-center gap-8 text-center mx-4"
+              className="relative max-w-lg w-full bg-white rounded-2xl md:rounded-[1.5rem] border border-black/10 p-8 md:p-10 flex flex-col items-center text-center mx-4 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Highlight background circle for the logo */}
-              <div className="w-40 h-40 rounded-2xl bg-foreground/[0.02] border border-foreground/[0.05] flex items-center justify-center p-6 shadow-sm">
+              {/* Partner Logo Wrapper */}
+              <div className="w-36 h-28 rounded-xl bg-stone-100 border border-black/5 flex items-center justify-center p-4 mb-6 shadow-inner">
                 <img
-                  src={marqueeLogos[selectedClientIndex].img}
-                  alt={marqueeLogos[selectedClientIndex].name}
+                  src={clientLogos[selectedClientIndex].img}
+                  alt={clientLogos[selectedClientIndex].name}
+                  decoding="async"
                   className="max-w-full max-h-full object-contain"
+                  style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
                 />
               </div>
 
-              {/* Client brand info */}
-              <div className="space-y-3">
-                <span className="text-[11px] font-mono text-primary uppercase tracking-[0.12em] font-semibold block">
-                  {marqueeLogos[selectedClientIndex].category}
+              {/* Partner Info */}
+              <div className="space-y-2 mb-6">
+                <span className="text-[10px] uppercase tracking-[0.18em] font-medium text-[#C5A059] block">
+                  {clientLogos[selectedClientIndex].partnership}
                 </span>
-                <h3 className="font-serif text-3xl font-light text-foreground tracking-tight leading-tight">
-                  {marqueeLogos[selectedClientIndex].name}
+                <h3 className="font-serif text-2xl md:text-3xl font-light text-[#1A1A1A] tracking-tight">
+                  {clientLogos[selectedClientIndex].name}
                 </h3>
-                <p className="text-xs text-muted-foreground font-light leading-relaxed max-w-sm">
-                  Official Infinity Photo partner for world-class visual production, documenting the beauty of Bali and beyond.
-                </p>
               </div>
 
-              {/* Project Details metadata badges */}
-              <div className="w-full border-t border-foreground/[0.06] pt-6 flex justify-around text-left">
+              {/* Management Testimonial Quote */}
+              <blockquote className="text-xs md:text-sm text-[#4A4A4A] font-light italic leading-relaxed max-w-md bg-[#FDFBF7] p-5 rounded-xl border border-black/5 mb-6">
+                "{clientLogos[selectedClientIndex].testimonial}"
+              </blockquote>
+
+              {/* Metadata details */}
+              <div className="w-full border-t border-black/8 pt-4 flex justify-between text-left text-xs">
                 <div>
-                  <span className="text-[11px] font-mono text-muted-foreground/50 uppercase tracking-widest block">Project Type</span>
-                  <span className="text-xs text-foreground/70 font-light">Commercial Film</span>
+                  <span className="text-[10px] uppercase tracking-wider text-foreground/50 block font-medium">Category</span>
+                  <span className="text-[#1A1A1A] font-light">{clientLogos[selectedClientIndex].category}</span>
                 </div>
-                <div>
-                  <span className="text-[11px] font-mono text-muted-foreground/50 uppercase tracking-widest block">Location</span>
-                  <span className="text-xs text-foreground/70 font-light">Bali, ID</span>
+                <div className="text-right">
+                  <span className="text-[10px] uppercase tracking-wider text-foreground/50 block font-medium">Location</span>
+                  <span className="text-[#1A1A1A] font-light">Bali, Indonesia</span>
                 </div>
               </div>
             </motion.div>
 
-            {/* Desktop Side Right Nav Arrow */}
+            {/* Desktop Right Nav Arrow */}
             <button
               onClick={nextClient}
-              className="hidden md:flex absolute right-4 md:right-8 text-foreground/50 hover:text-foreground transition-colors p-3 rounded-full glass cursor-pointer z-55"
-              aria-label="Next brand"
+              className="hidden md:flex absolute right-4 md:right-8 text-white/70 hover:text-white transition-colors p-4 rounded-full bg-white/10 hover:bg-white/20 cursor-pointer z-[55]"
+              aria-label="Next partner"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-6 h-6" />
             </button>
 
-            {/* Mobile Bottom Control Bar */}
-            <div className="flex md:hidden items-center justify-center gap-6 mt-8 z-55">
+            {/* Mobile Controls */}
+            <div className="flex md:hidden items-center justify-center gap-6 mt-8 z-[55]">
               <button 
                 onClick={prevClient} 
-                className="p-3.5 rounded-full glass bg-background/50 active:scale-95 transition-transform"
-                aria-label="Previous brand"
+                className="p-3.5 rounded-full bg-white/10 active:scale-95 transition-transform"
+                aria-label="Previous partner"
               >
-                <ChevronLeft className="w-5 h-5 text-foreground" />
+                <ChevronLeft className="w-5 h-5 text-white" />
               </button>
-              <span className="text-[11px] font-mono text-muted-foreground/80 tracking-widest bg-background/20 px-4 py-2 rounded-full glass">
+              <span className="text-[11px] font-mono text-white/70 tracking-widest bg-white/10 px-4 py-2 rounded-full">
                 {(selectedClientIndex % clientLogos.length) + 1} / {clientLogos.length}
               </span>
               <button 
                 onClick={nextClient} 
-                className="p-3.5 rounded-full glass bg-background/50 active:scale-95 transition-transform"
-                aria-label="Next brand"
+                className="p-3.5 rounded-full bg-white/10 active:scale-95 transition-transform"
+                aria-label="Next partner"
               >
-                <ChevronRight className="w-5 h-5 text-foreground" />
+                <ChevronRight className="w-5 h-5 text-white" />
               </button>
             </div>
           </motion.div>

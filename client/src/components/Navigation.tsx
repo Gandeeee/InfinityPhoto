@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
-import { useTheme } from "@/components/ui/theme-provider";
+import { ArrowUpRight } from "lucide-react";
 
 const navItems = [
-  { label: "About", href: "#about" },
   { label: "Portfolio", href: "#portfolio" },
-  { label: "Services", href: "#services" },
-  { label: "Process", href: "#procedure" },
+  { label: "Partnership", href: "#partnership" },
+  { label: "Collaboration", href: "#collaboration" },
   { label: "Contact", href: "#contact" },
 ];
 
 export default function Navigation() {
-  const { theme, toggleTheme } = useTheme();
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -35,10 +33,10 @@ export default function Navigation() {
     <>
       <motion.nav
         layout
-        transition={{ type: "spring", stiffness: 180, damping: 20 }}
+        transition={{ type: "spring", stiffness: 160, damping: 22 }}
         className={`fixed left-0 right-0 z-50 ${
           isScrolled
-            ? "top-6 mx-auto w-[calc(100%-2rem)] max-w-5xl rounded-full glass px-6 py-3 shadow-[0_12px_40px_rgba(201,169,97,0.06)]"
+            ? "top-5 mx-auto w-[calc(100%-2.5rem)] max-w-5xl rounded-full backdrop-blur-md bg-white/85 border border-foreground/10 px-6 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.08)]"
             : "top-0 w-full bg-transparent px-8 py-6 rounded-none"
         }`}
         data-testid="navigation-main"
@@ -47,7 +45,9 @@ export default function Navigation() {
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="font-serif text-xl font-extralight tracking-[0.12em] text-foreground/90 hover:text-foreground transition-colors duration-500 bg-transparent border-none cursor-pointer"
+            className={`font-serif text-lg md:text-xl font-light tracking-[0.12em] transition-colors duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] bg-transparent border-none cursor-pointer flex items-center ${
+              isScrolled ? "text-foreground/90 hover:text-foreground" : "text-white/90 hover:text-white"
+            }`}
             data-testid="button-logo"
           >
             INFINITY PHOTO
@@ -59,51 +59,36 @@ export default function Navigation() {
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="text-[11px] uppercase tracking-[0.12em] font-medium transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] px-4 py-2 rounded-full text-foreground/60 hover:text-foreground hover:bg-foreground/[0.04] bg-transparent border-none cursor-pointer"
+                className={`text-[11px] uppercase tracking-[0.12em] font-medium transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] px-3.5 py-1.5 rounded-full bg-transparent border-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 ${
+                  isScrolled 
+                    ? "text-foreground/70 hover:text-foreground" 
+                    : "text-white/80 hover:text-white"
+                }`}
                 data-testid={`link-nav-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
               >
                 {item.label}
               </button>
             ))}
 
-            {/* Theme Switcher Toggle */}
+            {/* Compact Editorial Navbar CTA button */}
             <button
-              onClick={toggleTheme}
-              className="ml-2 w-8 h-8 rounded-full flex items-center justify-center text-foreground/50 hover:text-foreground hover:bg-foreground/[0.04] transition-all duration-500 focus:outline-none bg-transparent border-none cursor-pointer"
-              aria-label="Toggle theme"
+              onClick={() => scrollToSection("#contact")}
+              className={`group ml-3 inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-[11px] uppercase tracking-[0.14em] font-medium transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 active:scale-[0.98] ${
+                isScrolled 
+                  ? "border border-foreground/20 bg-foreground/5 hover:bg-foreground/10 text-foreground" 
+                  : "border border-white/30 bg-white/10 hover:bg-white/20 text-white backdrop-blur-md"
+              }`}
             >
-              {theme === "light" ? (
-                // Moon Icon
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-                </svg>
-              ) : (
-                // Sun Icon
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>
-                </svg>
-              )}
+              <span>Book Now</span>
+              <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.8} />
             </button>
-
-            {/* Desktop CTA pill */}
-            <div className="ml-4 p-0.5 rounded-full border border-foreground/[0.08] bg-foreground/[0.02]">
-              <button
-                onClick={() => scrollToSection("#contact")}
-                className="group flex items-center gap-2 rounded-full pl-5 pr-1.5 py-1.5 text-[11px] uppercase tracking-[0.12em] font-semibold text-foreground/75 hover:text-foreground transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] bg-transparent border-none cursor-pointer"
-              >
-                <span>Book Now</span>
-                <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:scale-110">
-                  <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-primary-foreground">
-                    <path d="M1 11L11 1"/><path d="M4 1h7v7"/>
-                  </svg>
-                </div>
-              </button>
-            </div>
           </div>
 
           {/* Mobile: Hamburger Button */}
           <button
-            className="md:hidden relative w-9 h-9 flex items-center justify-center rounded-full hover:bg-foreground/[0.04] transition-colors duration-300 focus:outline-none bg-transparent border-none cursor-pointer"
+            className={`md:hidden relative w-9 h-9 flex items-center justify-center rounded-full transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 bg-transparent border-none cursor-pointer ${
+              isScrolled ? "hover:bg-foreground/[0.04]" : "hover:bg-white/10"
+            }`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             data-testid="button-mobile-menu"
@@ -111,7 +96,7 @@ export default function Navigation() {
             <div className="relative w-[18px] h-[12px]">
               {/* Line 1 */}
               <motion.span
-                className="absolute left-0 block h-[1.5px] bg-foreground rounded-full"
+                className={`absolute left-0 block h-[1.5px] rounded-full ${isScrolled || isMobileMenuOpen ? "bg-foreground" : "bg-white"}`}
                 style={{ top: 0, originX: "center", originY: "center" }}
                 animate={isMobileMenuOpen
                   ? { rotate: 45, y: 5.5, width: "100%" }
@@ -120,7 +105,7 @@ export default function Navigation() {
               />
               {/* Line 2 */}
               <motion.span
-                className="absolute left-0 block h-[1.5px] bg-foreground rounded-full"
+                className={`absolute left-0 block h-[1.5px] rounded-full ${isScrolled || isMobileMenuOpen ? "bg-foreground" : "bg-white"}`}
                 style={{ top: "50%", translateY: "-50%", originX: "left" }}
                 animate={isMobileMenuOpen
                   ? { scaleX: 0, opacity: 0 }
@@ -129,7 +114,7 @@ export default function Navigation() {
               />
               {/* Line 3 */}
               <motion.span
-                className="absolute left-0 block h-[1.5px] bg-foreground rounded-full"
+                className={`absolute left-0 block h-[1.5px] rounded-full ${isScrolled || isMobileMenuOpen ? "bg-foreground" : "bg-white"}`}
                 style={{ bottom: 0, width: "70%", originX: "center", originY: "center" }}
                 animate={isMobileMenuOpen
                   ? { rotate: -45, y: -5.5, width: "100%" }
@@ -169,10 +154,10 @@ export default function Navigation() {
                     className="group w-full text-left flex items-end justify-between py-3 bg-transparent border-none cursor-pointer"
                     data-testid={`link-mobile-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
                   >
-                    <span className="font-serif text-3xl font-extralight text-foreground/80 group-hover:text-foreground tracking-tight transition-colors duration-300">
+                    <span className="font-serif text-3xl font-light text-foreground/80 group-hover:text-foreground tracking-tight transition-colors duration-300">
                       {item.label}
                     </span>
-                    <span className="text-[11px] font-mono text-foreground/20 group-hover:text-primary transition-colors duration-300 mb-2">
+                    <span className="text-[11px] font-mono text-foreground/30 group-hover:text-primary transition-colors duration-300 mb-2">
                       0{index + 1}
                     </span>
                   </motion.button>
@@ -180,7 +165,7 @@ export default function Navigation() {
               ))}
             </div>
 
-            {/* Bottom row: theme toggle + location + copyright */}
+            {/* Bottom row: location info */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -188,18 +173,13 @@ export default function Navigation() {
               className="flex items-end justify-between border-t border-foreground/[0.05] pt-6"
             >
               <div>
-                <p className="text-[11px] uppercase tracking-[0.12em] text-foreground/25 mb-1 font-semibold">Theme</p>
-                <button
-                  onClick={toggleTheme}
-                  className="flex items-center gap-2 text-xs text-foreground/60 hover:text-foreground transition-colors duration-300 font-light bg-transparent border-none cursor-pointer p-0"
-                >
-                  {theme === "light" ? "Switch to Dark" : "Switch to Light"}
-                </button>
+                <p className="text-[11px] uppercase tracking-[0.12em] text-foreground/40 mb-1 font-medium">Infinity Photo</p>
+                <p className="text-xs text-foreground/70 font-light">Editorial & Partnership</p>
               </div>
 
               <div className="text-right">
-                <p className="text-[11px] uppercase tracking-[0.12em] text-foreground/25 mb-1 font-semibold">Based in</p>
-                <p className="text-xs text-foreground/50 font-light">Gianyar, Bali</p>
+                <p className="text-[11px] uppercase tracking-[0.12em] text-foreground/40 mb-1 font-medium">Based in</p>
+                <p className="text-xs text-foreground/60 font-light">Gianyar, Bali</p>
               </div>
             </motion.div>
           </motion.div>

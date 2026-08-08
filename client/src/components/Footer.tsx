@@ -1,10 +1,10 @@
 import { ArrowUp, Instagram, Facebook } from "lucide-react";
+import { motion } from "framer-motion";
 
 const footerLinks = [
-  { label: "About", href: "#about" },
   { label: "Portfolio", href: "#portfolio" },
-  { label: "Services", href: "#services" },
-  { label: "Process", href: "#procedure" },
+  { label: "Partnership", href: "#partnership" },
+  { label: "Collaboration", href: "#collaboration" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -28,7 +28,12 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-12 mb-16 items-start">
 
           {/* Brand Column */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
+          >
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="font-serif text-2xl font-extralight tracking-[0.1em] text-foreground mb-4 block hover:text-primary transition-colors duration-300 bg-transparent border-none cursor-pointer"
@@ -39,10 +44,15 @@ export default function Footer() {
             <p className="text-xs text-muted-foreground font-light leading-relaxed max-w-[240px]">
               Professional photography studio based in Gianyar, Bali. Weddings, events, lifestyle portraits.
             </p>
-          </div>
+          </motion.div>
 
           {/* Navigation Links */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: 0.1 }}
+          >
             <span className="text-[11px] uppercase tracking-[0.12em] font-semibold text-muted-foreground/60 block mb-4">
               Navigate
             </span>
@@ -58,10 +68,16 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Socials + back to top */}
-          <div className="flex flex-col items-start md:items-end gap-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: 0.2 }}
+            className="flex flex-col items-start md:items-end gap-6"
+          >
             <div>
               <span className="text-[11px] uppercase tracking-[0.12em] font-semibold text-muted-foreground/60 block mb-4 md:text-right">
                 Follow Us
@@ -99,7 +115,7 @@ export default function Footer() {
                 <ArrowUp className="w-3 h-3 group-hover:-translate-y-0.5 transition-transform duration-300" />
               </div>
             </button>
-          </div>
+          </motion.div>
         </div>
 
         {/* Divider */}
