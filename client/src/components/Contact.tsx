@@ -9,7 +9,7 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const phoneNumber = "6281805610551";
+    const phoneNumber = "6282146802311";
     
     let waText = "";
     if (intent === "client") {
@@ -33,7 +33,7 @@ export default function Contact() {
   return (
     <section 
       id="contact" 
-      className="py-32 md:py-44 px-4 md:px-8 overflow-hidden relative bg-background" 
+      className="py-32 md:py-44 px-4 md:px-8 overflow-hidden relative bg-background scroll-mt-24 md:scroll-mt-32 w-full box-border" 
     >
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Block (Badge Eliminated, Clean Title & Copy) */}
@@ -53,7 +53,7 @@ export default function Contact() {
         </div>
 
         {/* Two Column Layout */}
-        <div className="grid md:grid-cols-12 gap-6 lg:gap-10 items-stretch">
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-stretch w-full box-border">
 
           {/* Left Column - Smart Form */}
           <motion.div
@@ -61,7 +61,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0, rotate: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-7 flex flex-col origin-bottom-left"
+            className="lg:col-span-7 flex flex-col origin-bottom-left w-full box-border"
           >
             <div className="rounded-2xl md:rounded-[1.5rem] bg-white border border-black/8 p-8 md:p-12 shadow-[0_8px_25px_rgba(0,0,0,0.03)] h-full flex flex-col justify-between">
               <form onSubmit={handleSubmit} className="flex flex-col h-full justify-between gap-8">
@@ -71,13 +71,13 @@ export default function Contact() {
                     <label className="text-[11px] uppercase tracking-[0.14em] font-medium text-[#1A1A1A] block">
                       I am interested in...
                     </label>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div className="flex flex-col sm:flex-row gap-3.5 w-full box-border">
                       {/* Option A - Client */}
                       <button
                         type="button"
                         onClick={() => setIntent("client")}
                         aria-pressed={intent === "client"}
-                        className={`cursor-pointer text-left w-full p-4 rounded-xl border transition-all duration-300 flex items-start gap-3.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                        className={`cursor-pointer text-left w-full sm:flex-1 box-border p-4 rounded-xl border transition-all duration-300 flex items-start gap-3.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
                           intent === "client" 
                             ? "bg-[#1A1A1A] text-white border-[#1A1A1A] shadow-sm" 
                             : "bg-transparent text-[#333333] border-black/15 hover:border-black/35"
@@ -101,7 +101,7 @@ export default function Contact() {
                         type="button"
                         onClick={() => setIntent("partnership")}
                         aria-pressed={intent === "partnership"}
-                        className={`cursor-pointer text-left w-full p-4 rounded-xl border transition-all duration-300 flex items-start gap-3.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
+                        className={`cursor-pointer text-left w-full sm:flex-1 box-border p-4 rounded-xl border transition-all duration-300 flex items-start gap-3.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 ${
                           intent === "partnership" 
                             ? "bg-[#1A1A1A] text-white border-[#1A1A1A] shadow-sm" 
                             : "bg-transparent text-[#333333] border-black/15 hover:border-black/35"
@@ -172,7 +172,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: 0.15 }}
-            className="md:col-span-5 flex flex-col"
+            className="lg:col-span-5 flex flex-col w-full box-border"
           >
             <div className="rounded-2xl md:rounded-[1.5rem] bg-white border border-black/8 p-8 md:p-10 shadow-[0_8px_25px_rgba(0,0,0,0.03)] h-full flex flex-col justify-between">
               <div>
@@ -185,9 +185,9 @@ export default function Contact() {
                     <div className="w-11 h-11 rounded-full bg-[#FDFBF7] border border-black/5 flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
                       <Mail className="w-4 h-4 text-[#C5A059]" strokeWidth={1.8} />
                     </div>
-                    <div className="pt-0.5">
+                    <div className="pt-0.5 min-w-0 flex-1">
                       <p className="text-[10px] uppercase tracking-widest font-medium text-foreground/50 mb-1">Email</p>
-                      <p className="text-sm md:text-base text-[#1A1A1A] font-medium">infinityphotocontact@gmail.com</p>
+                      <p className="text-sm md:text-base text-[#1A1A1A] font-medium break-all">infinityphotocontact@gmail.com</p>
                     </div>
                   </div>
                   
@@ -197,7 +197,10 @@ export default function Contact() {
                     </div>
                     <div className="pt-0.5">
                       <p className="text-[10px] uppercase tracking-widest font-medium text-foreground/50 mb-1">Phone / WhatsApp</p>
-                      <p className="text-sm md:text-base text-[#1A1A1A] font-medium">+62 818 0561 0551</p>
+                      <div className="space-y-1">
+                        <p className="text-sm md:text-base text-[#1A1A1A] font-medium">+62 821 4680 2311 <span className="text-foreground/50 text-xs ml-1 font-light">(Primary)</span></p>
+                        <p className="text-sm md:text-base text-[#1A1A1A] font-medium">+62 818 0561 0551 <span className="text-foreground/50 text-xs ml-1 font-light">(Secondary)</span></p>
+                      </div>
                     </div>
                   </div>
                   
