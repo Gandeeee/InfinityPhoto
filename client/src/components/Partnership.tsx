@@ -67,22 +67,13 @@ export default function Partnership() {
             {/* Clean Elevated Container */}
             <div className="relative h-full min-h-[400px] md:min-h-[580px] rounded-2xl md:rounded-[1.5rem] bg-[#F5F2EB] border border-black/8 shadow-[0_10px_30px_rgba(0,0,0,0.04)] overflow-hidden flex flex-col items-center justify-center p-8 md:p-14 text-center">
               
-              {/* Abstract Architectural Representation of Standby Studio */}
-              <div className="w-32 h-48 md:w-40 md:h-64 rounded-t-full bg-white shadow-xl mb-8 relative flex flex-col items-center justify-start pt-8 border border-black/5">
-                {/* Studio camera lens */}
-                <div className="w-12 h-12 rounded-full border-4 border-black/10 bg-[#FDFBF7] flex items-center justify-center">
-                  <div className="w-4 h-4 rounded-full bg-black/20" />
-                </div>
-                {/* Instant print preview screen */}
-                <div className="w-24 h-16 mt-6 rounded-lg bg-black/5 border border-black/5" />
-              </div>
-              
-              <h3 className="font-serif text-2xl font-light text-[#1A1A1A] tracking-wide mb-2">
-                Infinity Standby Studio Mockup
-              </h3>
-              <p className="text-xs uppercase tracking-[0.16em] font-medium text-foreground/50">
-                1x1m Installation & Managed Experience
-              </p>
+              <img 
+                src="/inhouse_photo_corner.png" 
+                alt="In-House Photo Corner Setup" 
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+              />
               
               {/* Micro Noise Texture */}
               <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }}></div>
