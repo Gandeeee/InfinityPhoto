@@ -198,8 +198,8 @@ export default function Contact() {
                     <div className="pt-0.5">
                       <p className="text-[10px] uppercase tracking-widest font-medium text-foreground/50 mb-1">Phone / WhatsApp</p>
                       <div className="space-y-1">
-                        <p className="text-sm md:text-base text-[#1A1A1A] font-medium">+62 821 4680 2311 <span className="text-foreground/50 text-xs ml-1 font-light">(Primary)</span></p>
-                        <p className="text-sm md:text-base text-[#1A1A1A] font-medium">+62 818 0561 0551 <span className="text-foreground/50 text-xs ml-1 font-light">(Secondary)</span></p>
+                        <p className="text-sm md:text-base text-[#1A1A1A] font-medium">+62 821 4680 2311 <span className="text-foreground/50 text-xs ml-1 font-light">(Agung)</span></p>
+                        <p className="text-sm md:text-base text-[#1A1A1A] font-medium">+62 818 0561 0551 <span className="text-foreground/50 text-xs ml-1 font-light">(Pande)</span></p>
                       </div>
                     </div>
                   </div>
