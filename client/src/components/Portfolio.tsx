@@ -13,17 +13,31 @@ import img6 from "@assets/compressed_img/L4b.jpg";
 import img7 from "@assets/compressed_img/PU7_5622.jpg";
 import img8 from "@assets/compressed_img/lombok elephant.jpg";
 import img9 from "@assets/compressed_img/senja-ombak-sunset.jpg";
+import img10 from "@assets/compressed_img/90610778_3195905833767608_3937488238716911616_n.jpg";
+import img11 from "@assets/compressed_img/Circus-Waterpark-Bali.jpg";
+import img12 from "@assets/compressed_img/ban-3.webp";
+import img13 from "@assets/compressed_img/circus water park.webp";
+import img14 from "@assets/compressed_img/lombok elephant1.jpg";
+import img15 from "@assets/compressed_img/lombok elephant3.jpg";
+import img16 from "@assets/compressed_img/speed-racing-724x400.jpg";
 
 const portfolioItems = [
-  { id: 1, category: "wedding", image: img1, title: "Nathalie & Mark", location: "The Ritz-Carlton, Bali", year: "2024", span: "md:col-span-8 md:row-span-2" },
-  { id: 2, category: "wedding", image: img2, title: "Coastal Romance", location: "Alila Villas, Uluwatu", year: "2024", span: "md:col-span-4 md:row-span-1" },
-  { id: 3, category: "lifestyle", image: img3, title: "Lifestyle Editorial", location: "Potato Head, Seminyak", year: "2024", span: "md:col-span-4 md:row-span-1" },
-  { id: 4, category: "wedding", image: img4, title: "Bridal Suite Details", location: "Mandapa Reserve, Ubud", year: "2023", span: "md:col-span-4 md:row-span-2" },
-  { id: 5, category: "event", image: img5, title: "Annual Leadership Gala", location: "Grand Hyatt, Bali", year: "2023", span: "md:col-span-8 md:row-span-1" },
-  { id: 6, category: "wedding", image: img6, title: "Cliffside Reception", location: "Bulgari Resort, Bali", year: "2023", span: "md:col-span-4 md:row-span-1" },
-  { id: 7, category: "lifestyle", image: img7, title: "High-Fashion Story", location: "Desa Potato Head, Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
-  { id: 8, category: "wedding", image: img8, title: "Sacred Ceremony", location: "Four Seasons, Sayan", year: "2024", span: "md:col-span-4 md:row-span-1" },
-  { id: 9, category: "event", image: img9, title: "Executive Summit", location: "Mulia Resort, Nusa Dua", year: "2023", span: "md:col-span-4 md:row-span-1" },
+  { id: 1, category: "wedding", image: img1, title: "Sacred Ceremony", location: "Bali", year: "2024", span: "md:col-span-8 md:row-span-2" },
+  { id: 2, category: "wedding", image: img2, title: "Coastal Romance", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 3, category: "wedding", image: img3, title: "Editorial Portrait", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 4, category: "wedding", image: img4, title: "Bridal Details", location: "Bali", year: "2023", span: "md:col-span-4 md:row-span-2" },
+  { id: 5, category: "lifestyle", image: img5, title: "Lifestyle Editorial", location: "Bali", year: "2023", span: "md:col-span-8 md:row-span-1" },
+  { id: 6, category: "wedding", image: img6, title: "Cliffside Reception", location: "Bali", year: "2023", span: "md:col-span-4 md:row-span-1" },
+  { id: 7, category: "wedding", image: img7, title: "Cultural Story", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 8, category: "lifestyle", image: img8, title: "Wilderness Adventure", location: "Lombok", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 9, category: "lifestyle", image: img9, title: "Sunset Story", location: "Lombok", year: "2023", span: "md:col-span-4 md:row-span-1" },
+  { id: 10, category: "event", image: img10, title: "Ceremony Moments", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 11, category: "lifestyle", image: img11, title: "Waterpark Fun", location: "Bali", year: "2024", span: "md:col-span-8 md:row-span-2" },
+  { id: 12, category: "event", image: img12, title: "Musical Performance", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 13, category: "lifestyle", image: img13, title: "Circus Memories", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 14, category: "lifestyle", image: img14, title: "Elephant Safari", location: "Lombok", year: "2023", span: "md:col-span-4 md:row-span-1" },
+  { id: 15, category: "lifestyle", image: img15, title: "Nature Exploration", location: "Lombok", year: "2023", span: "md:col-span-4 md:row-span-1" },
+  { id: 16, category: "event", image: img16, title: "Speed Racing", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
 ];
 
 const categories = [
