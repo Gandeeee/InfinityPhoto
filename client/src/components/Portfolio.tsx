@@ -22,29 +22,29 @@ import img15 from "@assets/compressed_img/lombok elephant3.jpg";
 import img16 from "@assets/compressed_img/speed-racing-724x400.jpg";
 
 const portfolioItems = [
-  { id: 1, category: "wedding", image: img1, title: "Sacred Ceremony", location: "Bali", year: "2024", span: "md:col-span-8 md:row-span-2" },
-  { id: 2, category: "wedding", image: img2, title: "Coastal Romance", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
-  { id: 3, category: "wedding", image: img3, title: "Editorial Portrait", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
-  { id: 4, category: "wedding", image: img4, title: "Bridal Details", location: "Bali", year: "2023", span: "md:col-span-4 md:row-span-2" },
-  { id: 5, category: "lifestyle", image: img5, title: "Lifestyle Editorial", location: "Bali", year: "2023", span: "md:col-span-8 md:row-span-1" },
-  { id: 6, category: "wedding", image: img6, title: "Cliffside Reception", location: "Bali", year: "2023", span: "md:col-span-4 md:row-span-1" },
-  { id: 7, category: "wedding", image: img7, title: "Cultural Story", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
-  { id: 8, category: "lifestyle", image: img8, title: "Wilderness Adventure", location: "Lombok", year: "2024", span: "md:col-span-4 md:row-span-1" },
-  { id: 9, category: "lifestyle", image: img9, title: "Sunset Story", location: "Lombok", year: "2023", span: "md:col-span-4 md:row-span-1" },
-  { id: 10, category: "event", image: img10, title: "Ceremony Moments", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
-  { id: 11, category: "lifestyle", image: img11, title: "Waterpark Fun", location: "Bali", year: "2024", span: "md:col-span-8 md:row-span-2" },
-  { id: 12, category: "event", image: img12, title: "Musical Performance", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
-  { id: 13, category: "lifestyle", image: img13, title: "Circus Memories", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
-  { id: 14, category: "lifestyle", image: img14, title: "Elephant Safari", location: "Lombok", year: "2023", span: "md:col-span-4 md:row-span-1" },
-  { id: 15, category: "lifestyle", image: img15, title: "Nature Exploration", location: "Lombok", year: "2023", span: "md:col-span-4 md:row-span-1" },
-  { id: 16, category: "event", image: img16, title: "Speed Racing", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 1, category: "wedding", image: img1, title: "Sacred Vows", location: "Bali", year: "2024", span: "md:col-span-8 md:row-span-2" },
+  { id: 2, category: "wedding", image: img2, title: "Intimate Exchange", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 3, category: "wedding", image: img3, title: "Golden Hour Romance", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 4, category: "wedding", image: img4, title: "Bridal Elegance", location: "Bali", year: "2023", span: "md:col-span-4 md:row-span-2" },
+  { id: 5, category: "lifestyle", image: img5, title: "Editorial Portrait", location: "Bali", year: "2023", span: "md:col-span-8 md:row-span-1" },
+  { id: 6, category: "lifestyle", image: img6, title: "Urban Exploration", location: "Bali", year: "2023", span: "md:col-span-4 md:row-span-1" },
+  { id: 7, category: "moments", image: img7, title: "Candid Laughter", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 8, category: "lifestyle", image: img8, title: "Safari Encounter", location: "Lombok", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 9, category: "moments", image: img9, title: "Ocean Horizon", location: "Lombok", year: "2023", span: "md:col-span-4 md:row-span-1" },
+  { id: 10, category: "wedding", image: img10, title: "Joyful Celebration", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 11, category: "moments", image: img11, title: "Waterpark Splash", location: "Bali", year: "2024", span: "md:col-span-8 md:row-span-2" },
+  { id: 12, category: "moments", image: img12, title: "Musical Harmony", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 13, category: "moments", image: img13, title: "Playful Afternoon", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 14, category: "lifestyle", image: img14, title: "Nature Connection", location: "Lombok", year: "2023", span: "md:col-span-4 md:row-span-1" },
+  { id: 15, category: "lifestyle", image: img15, title: "Wilderness Walk", location: "Lombok", year: "2023", span: "md:col-span-4 md:row-span-1" },
+  { id: 16, category: "moments", image: img16, title: "Thrill & Speed", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
 ];
 
 const categories = [
   { id: "all", label: "All Work" },
   { id: "wedding", label: "Wedding" },
-  { id: "event", label: "Corporate Event" },
-  { id: "lifestyle", label: "Lifestyle" },
+  { id: "moments", label: "Sweet Moments" },
+  { id: "lifestyle", label: "Lifestyle Portraits" },
 ];
 
 export default function Portfolio() {
