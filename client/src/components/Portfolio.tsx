@@ -26,7 +26,7 @@ const portfolioItems = [
   { id: 2, category: "wedding", image: img2, title: "Intimate Exchange", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
   { id: 3, category: "wedding", image: img3, title: "Golden Hour Romance", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
   { id: 4, category: "wedding", image: img4, title: "Bridal Elegance", location: "Bali", year: "2023", span: "md:col-span-4 md:row-span-2" },
-  { id: 5, category: "lifestyle", image: img5, title: "Editorial Portrait", location: "Bali", year: "2023", span: "md:col-span-8 md:row-span-1" },
+  { id: 5, category: "lifestyle", image: img5, title: "Editorial Portrait", location: "Bali", year: "2023", span: "md:col-span-8 md:row-span-1", objectPosition: "object-[center_25%]" },
   { id: 6, category: "lifestyle", image: img6, title: "Urban Exploration", location: "Bali", year: "2023", span: "md:col-span-4 md:row-span-1" },
   { id: 7, category: "moments", image: img7, title: "Candid Laughter", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
   { id: 8, category: "lifestyle", image: img8, title: "Safari Encounter", location: "Lombok", year: "2024", span: "md:col-span-4 md:row-span-1" },
