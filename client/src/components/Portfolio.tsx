@@ -4,23 +4,26 @@ import { X, ChevronLeft, ChevronRight, Loader2, ArrowUpRight } from "lucide-reac
 import { Button } from "@/components/ui/button";
 
 // Images
-import weddingImage1 from "@assets/generated_images/Wedding_ceremony_portrait_9b4b85c0.png";
-import weddingImage2 from "@assets/generated_images/Beach_sunset_couple_walk_cce27857.png";
-import weddingImage3 from "@assets/generated_images/Wedding_detail_bouquet_4205ca11.png";
-import weddingImage4 from "@assets/generated_images/Wedding_reception_candid_moment_326596ad.png";
-import eventImage from "@assets/generated_images/Corporate_event_photography_6b6c050c.png";
-import lifestyleImage from "@assets/generated_images/Lifestyle_portrait_photography_1394232d.png";
+import img1 from "@assets/compressed_img/agung wed.jpg";
+import img2 from "@assets/compressed_img/5p489.jpg";
+import img3 from "@assets/compressed_img/5p498.jpg";
+import img4 from "@assets/compressed_img/5p542.jpg";
+import img5 from "@assets/compressed_img/IMG_4017-scaled.webp";
+import img6 from "@assets/compressed_img/L4b.jpg";
+import img7 from "@assets/compressed_img/PU7_5622.jpg";
+import img8 from "@assets/compressed_img/lombok elephant.jpg";
+import img9 from "@assets/compressed_img/senja-ombak-sunset.jpg";
 
 const portfolioItems = [
-  { id: 1, category: "wedding", image: weddingImage1, title: "Nathalie & Mark", location: "The Ritz-Carlton, Bali", year: "2024", span: "md:col-span-8 md:row-span-2" },
-  { id: 2, category: "wedding", image: weddingImage2, title: "Coastal Romance", location: "Alila Villas, Uluwatu", year: "2024", span: "md:col-span-4 md:row-span-1" },
-  { id: 3, category: "lifestyle", image: lifestyleImage, title: "Lifestyle Editorial", location: "Potato Head, Seminyak", year: "2024", span: "md:col-span-4 md:row-span-1" },
-  { id: 4, category: "wedding", image: weddingImage3, title: "Bridal Suite Details", location: "Mandapa Reserve, Ubud", year: "2023", span: "md:col-span-4 md:row-span-2" },
-  { id: 5, category: "event", image: eventImage, title: "Annual Leadership Gala", location: "Grand Hyatt, Bali", year: "2023", span: "md:col-span-8 md:row-span-1" },
-  { id: 6, category: "wedding", image: weddingImage4, title: "Cliffside Reception", location: "Bulgari Resort, Bali", year: "2023", span: "md:col-span-4 md:row-span-1" },
-  { id: 7, category: "lifestyle", image: lifestyleImage, title: "High-Fashion Story", location: "Desa Potato Head, Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
-  { id: 8, category: "wedding", image: weddingImage1, title: "Sacred Ceremony", location: "Four Seasons, Sayan", year: "2024", span: "md:col-span-4 md:row-span-1" },
-  { id: 9, category: "event", image: eventImage, title: "Executive Summit", location: "Mulia Resort, Nusa Dua", year: "2023", span: "md:col-span-4 md:row-span-1" },
+  { id: 1, category: "wedding", image: img1, title: "Nathalie & Mark", location: "The Ritz-Carlton, Bali", year: "2024", span: "md:col-span-8 md:row-span-2" },
+  { id: 2, category: "wedding", image: img2, title: "Coastal Romance", location: "Alila Villas, Uluwatu", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 3, category: "lifestyle", image: img3, title: "Lifestyle Editorial", location: "Potato Head, Seminyak", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 4, category: "wedding", image: img4, title: "Bridal Suite Details", location: "Mandapa Reserve, Ubud", year: "2023", span: "md:col-span-4 md:row-span-2" },
+  { id: 5, category: "event", image: img5, title: "Annual Leadership Gala", location: "Grand Hyatt, Bali", year: "2023", span: "md:col-span-8 md:row-span-1" },
+  { id: 6, category: "wedding", image: img6, title: "Cliffside Reception", location: "Bulgari Resort, Bali", year: "2023", span: "md:col-span-4 md:row-span-1" },
+  { id: 7, category: "lifestyle", image: img7, title: "High-Fashion Story", location: "Desa Potato Head, Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 8, category: "wedding", image: img8, title: "Sacred Ceremony", location: "Four Seasons, Sayan", year: "2024", span: "md:col-span-4 md:row-span-1" },
+  { id: 9, category: "event", image: img9, title: "Executive Summit", location: "Mulia Resort, Nusa Dua", year: "2023", span: "md:col-span-4 md:row-span-1" },
 ];
 
 const categories = [
