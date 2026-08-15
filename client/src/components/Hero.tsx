@@ -63,7 +63,7 @@ export default function Hero() {
             transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             className="font-serif text-5xl md:text-7xl lg:text-[6.5rem] font-light leading-[1.05] tracking-[-0.02em] text-white max-w-5xl origin-bottom-left"
           >
-            Timeless Imagery. <br className="hidden md:block"/>
+            Timeless Photography. <br className="hidden md:block"/>
             <span className="italic text-white/80">Elevated Experiences.</span>
           </motion.h1>
         </div>
