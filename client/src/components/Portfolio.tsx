@@ -22,7 +22,7 @@ import img15 from "@assets/compressed_img/lombok elephant3.jpg";
 import img16 from "@assets/compressed_img/speed-racing-724x400.jpg";
 
 const portfolioItems = [
-  { id: 1, category: "wedding", image: img1, title: "Sacred Vows", location: "Bali", year: "2024", span: "md:col-span-8 md:row-span-2" },
+  { id: 1, category: "wedding", image: img1, title: "Sacred Vows", location: "Bali", year: "2024", span: "md:col-span-8 md:row-span-2", objectPosition: "object-[center_25%]" },
   { id: 2, category: "wedding", image: img2, title: "Intimate Exchange", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
   { id: 3, category: "wedding", image: img3, title: "Golden Hour Romance", location: "Bali", year: "2024", span: "md:col-span-4 md:row-span-1" },
   { id: 4, category: "wedding", image: img4, title: "Bridal Elegance", location: "Bali", year: "2023", span: "md:col-span-4 md:row-span-2" },
@@ -172,7 +172,7 @@ export default function Portfolio() {
                     alt={`${item.title} - ${item.location}`}
                     loading="lazy"
                     decoding="async"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-[1.035]"
+                    className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-[1.035] ${item.objectPosition || "object-center"}`}
                     style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
                   />
                   
